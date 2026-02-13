@@ -1,47 +1,54 @@
 // styles/styles.ts
 import { StyleSheet } from 'react-native';
 
+// ----- Brand Colors -----
+const COLOR_1 = '#002f78';   // Primary blue
+const COLOR_2 = '#FDFEFE';   // Light accent (approx of display-p3)
+
 export const styles = StyleSheet.create({
   // ---------- Container & General ----------
   container: {
     flex: 1,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: COLOR_2,
   },
 
   // ---------- Hero Section ----------
   hero: {
     padding: 40,
-    backgroundColor: '#004aad',
+    backgroundColor: COLOR_1,
     alignItems: 'center',
   },
   heroTitle: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#fff',
+    color: COLOR_2,
   },
   heroSubtitle: {
     fontSize: 16,
-    color: '#fff',
+    color: COLOR_2,
     marginTop: 10,
   },
 
   // ---------- Sections ----------
   section: {
     padding: 20,
+    backgroundColor: COLOR_2,
   },
   sectionTitle: {
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 12,
+    color: COLOR_1,
   },
   sectionText: {
     fontSize: 16,
     lineHeight: 22,
+    color: COLOR_1,
   },
 
   // ---------- Card Styles ----------
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     padding: 15,
     borderRadius: 8,
     marginBottom: 12,
@@ -54,16 +61,18 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 6,
+    color: COLOR_1,
   },
   cardText: {
     fontSize: 14,
     lineHeight: 20,
+    color: COLOR_1,
   },
   cardAuthor: {
     fontSize: 14,
     fontStyle: 'italic',
     marginTop: 6,
-    color: '#555',
+    color: COLOR_1,
   },
   projectImage: {
     width: '100%',
@@ -74,14 +83,14 @@ export const styles = StyleSheet.create({
 
   // ---------- Button ----------
   button: {
-    backgroundColor: '#004aad',
+    backgroundColor: COLOR_1,
     padding: 12,
     borderRadius: 6,
     marginTop: 12,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: COLOR_2,
     fontWeight: '600',
   },
 
@@ -89,7 +98,7 @@ export const styles = StyleSheet.create({
   taskBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#004aad',
+    backgroundColor: COLOR_1,
     paddingVertical: 20,
     paddingHorizontal: 12,
     zIndex: 10,
@@ -99,6 +108,7 @@ export const styles = StyleSheet.create({
   },
   favicon: {
     fontSize: 28,
+    color: COLOR_2,
   },
   pagesContainer: {
     flexDirection: 'row',
@@ -111,7 +121,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
   },
   taskButtonText: {
-    color: '#fff',
+    color: COLOR_2,
     fontWeight: '700',
     fontSize: 16,
   },
@@ -120,14 +130,14 @@ export const styles = StyleSheet.create({
   footerContainer: {
     padding: 20,
     borderTopWidth: 1,
-    borderColor: '#ccc',
+    borderColor: COLOR_1,
     alignItems: 'center',
-    backgroundColor: '#f8f8f8',
+    backgroundColor: COLOR_2,
   },
   footerText: {
     marginBottom: 10,
     fontSize: 14,
-    color: '#555',
+    color: COLOR_1,
   },
   footerIcons: {
     flexDirection: 'row',
@@ -137,5 +147,6 @@ export const styles = StyleSheet.create({
   footerIcon: {
     fontSize: 24,
     marginHorizontal: 10,
+    color: COLOR_1,
   },
 });

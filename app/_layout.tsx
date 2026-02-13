@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Slot, useRouter } from 'expo-router';
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import Footer from './footer';
 import { styles } from './styles/styles';
 
 type Page = {
@@ -24,7 +25,8 @@ export default function Layout() {
 
   return (
     <View style={{ flex: 1 }}>
-      {/* Fixed Task Bar */}
+
+      {/* ---------------- Fixed Task Bar ---------------- */}
       <View
         style={[
           styles.taskBar,
@@ -33,22 +35,21 @@ export default function Layout() {
             top: 0,
             left: 0,
             right: 0,
+            height: TASKBAR_HEIGHT,
             zIndex: 100,
           },
         ]}
       >
-        {/* White star icon */}
         <View style={styles.faviconContainer}>
           <Ionicons name="star" size={28} color="#fff" />
         </View>
 
-        {/* Page buttons */}
         <View style={styles.pagesContainer}>
           {pages.map((page) => (
             <TouchableOpacity
               key={page.name}
               style={styles.taskButton}
-              onPress={() => router.push({ pathname: page.route })} // TypeScript safe
+              onPress={() => router.push({ pathname: page.route })}
             >
               <Text style={styles.taskButtonText}>{page.name}</Text>
             </TouchableOpacity>
@@ -56,13 +57,23 @@ export default function Layout() {
         </View>
       </View>
 
-      {/* Scrollable Page Content */}
-      <ScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={{ paddingTop: TASKBAR_HEIGHT + 10 }}
-      >
-        <Slot />
-      </ScrollView>
+      {/* ---------------- Main Content Area ---------------- */}
+      <View style={{ flex: 1, marginTop: TASKBAR_HEIGHT }}>
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'space-between',
+          }}
+        >
+          {/* Page Content */}
+          <Slot />
+
+          {/* Footer */}
+          <Footer />
+        </ScrollView>
+      </View>
+
     </View>
   );
 }
