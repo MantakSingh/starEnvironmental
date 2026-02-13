@@ -154,4 +154,50 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 20,
   },
+
+
+// ---------- Projects Grid ----------
+projectGrid: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  marginHorizontal: -6, // slightly smaller margin
+},
+
+projectCard: {
+  width: '30%',            // smaller than before
+  aspectRatio: 1,          // keeps square
+  backgroundColor: '#ffffff',
+  borderRadius: 10,
+  marginBottom: 16,
+  overflow: 'hidden',
+  shadowColor: '#000',
+  shadowOpacity: 0.08,
+  shadowRadius: 6,
+  elevation: 2,
+},
+
+projectImageContainer: {
+  flex: 1,
+  position: 'relative',     // needed for overlay
+},
+
+projectImage: {
+  width: '100%',
+  height: '100%',
+  resizeMode: 'cover',
+},
+
+projectTitleOverlay: {
+  position: 'absolute',
+  top: 0,
+  width: '100%',
+  paddingVertical: 6,
+  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+  textAlign: 'center',
+  fontSize: 16,
+  fontWeight: '700',
+  color: '#002f78',
+},
+
 });
