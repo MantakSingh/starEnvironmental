@@ -1,6 +1,5 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import Footer from './footer';
 import { styles as globalStyles } from './styles/styles';
 
 export default function Index() {
@@ -13,9 +12,6 @@ export default function Index() {
           About
         </Text>
       </View>
-
-      {/* Footer */}
-      <Footer />
     </ScrollView>
   );
 }

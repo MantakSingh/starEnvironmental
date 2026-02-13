@@ -1,7 +1,15 @@
 // app/contact.tsx
+import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { Alert, Linking, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { styles as globalStyles } from './styles/styles';
+import {
+  Alert,
+  Linking,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { styles } from "./styles/styles";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -13,7 +21,7 @@ export default function Contact() {
       Alert.alert("Please fill out all fields");
       return;
     }
-    // For demo, we just alert. In production, you might send this to a backend API.
+
     Alert.alert("Message Sent!", `Thank you, ${name}. We'll get back to you soon.`);
     setName("");
     setEmail("");
@@ -21,41 +29,68 @@ export default function Contact() {
   };
 
   return (
-    <View style={globalStyles.container}>
-      <Text style={styles.heading}>Contact Us</Text>
+    <View style={styles.section}>
+      {/* Page Title */}
+      <Text style={styles.sectionTitle}>Contact Us</Text>
+      <Text style={[styles.sectionText, { marginBottom: 25 }]}>
+        Have a project in mind? Get in touch with our team today.
+      </Text>
 
-      <View style={styles.infoSection}>
-        <Text style={styles.infoText}>📞 Phone: (123) 456-7890</Text>
-        <Text style={styles.infoText}>✉️ Email: info@mybusiness.com</Text>
-        <Text
-          style={[styles.infoText, styles.link]}
-          onPress={() => Linking.openURL("https://www.mybusiness.com")}
-        >
-          🌐 Website: www.mybusiness.com
-        </Text>
+      {/* Contact Info Card */}
+      <View style={styles.card}>
+        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
+          <Ionicons name="call-outline" size={18} color="#002f78" />
+          <Text style={[styles.cardText, { marginLeft: 8 }]}>
+            (253) 344-9113
+          </Text>
+        </View>
+
+        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
+          <Ionicons name="mail-outline" size={18} color="#002f78" />
+          <Text style={[styles.cardText, { marginLeft: 8 }]}>
+            kensinghb@gmail.com
+          </Text>
+        </View>
+
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Ionicons name="globe-outline" size={18} color="#002f78" />
+          <Text
+            style={[styles.cardText, { marginLeft: 8 }]}
+            onPress={() => Linking.openURL("https://www.mybusiness.com")}
+          >
+            www.mybusiness.com
+          </Text>
+        </View>
       </View>
 
-      <View style={styles.form}>
+      {/* Contact Form Card */}
+      <View style={[styles.card, { marginTop: 20 }]}>
         <TextInput
-          style={styles.input}
+          style={styles.formInput}
           placeholder="Your Name"
+          placeholderTextColor="#888"
           value={name}
           onChangeText={setName}
         />
+
         <TextInput
-          style={styles.input}
+          style={styles.formInput}
           placeholder="Your Email"
+          placeholderTextColor="#888"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
         />
+
         <TextInput
-          style={[styles.input, { height: 100 }]}
+          style={[styles.formInput, { height: 120 }]}
           placeholder="Your Message"
+          placeholderTextColor="#888"
           value={message}
           onChangeText={setMessage}
           multiline
         />
+
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Send Message</Text>
         </TouchableOpacity>
@@ -63,46 +98,3 @@ export default function Contact() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  heading: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
-  },
-  infoSection: {
-    marginBottom: 30,
-    paddingHorizontal: 20,
-  },
-  infoText: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  link: {
-    color: "#1e90ff",
-    textDecorationLine: "underline",
-  },
-  form: {
-    paddingHorizontal: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 15,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: "#1e90ff",
-    padding: 15,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-});

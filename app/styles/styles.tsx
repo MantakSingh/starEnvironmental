@@ -1,9 +1,8 @@
-// styles/styles.ts
 import { StyleSheet } from 'react-native';
 
 // ----- Brand Colors -----
 const COLOR_1 = '#002f78';   // Primary blue
-const COLOR_2 = '#FDFEFE';   // Light accent (approx of display-p3)
+const COLOR_2 = '#FDFEFE';   // Bright white background
 
 export const styles = StyleSheet.create({
   // ---------- Container & General ----------
@@ -49,11 +48,11 @@ export const styles = StyleSheet.create({
   // ---------- Card Styles ----------
   card: {
     backgroundColor: '#ffffff',
-    padding: 15,
+    padding: 20,
     borderRadius: 8,
-    marginBottom: 12,
+    marginBottom: 16,
     shadowColor: '#000',
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.08,
     shadowRadius: 6,
     elevation: 2,
   },
@@ -81,17 +80,29 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
+  // ---------- Form (Contact Page) ----------
+  formInput: {
+    borderWidth: 1,
+    borderColor: COLOR_1,
+    borderRadius: 6,
+    padding: 12,
+    marginBottom: 15,
+    fontSize: 16,
+    color: COLOR_1,
+    backgroundColor: '#ffffff',
+  },
+
   // ---------- Button ----------
   button: {
     backgroundColor: COLOR_1,
-    padding: 12,
+    padding: 14,
     borderRadius: 6,
-    marginTop: 12,
     alignItems: 'center',
   },
   buttonText: {
     color: COLOR_2,
     fontWeight: '600',
+    fontSize: 16,
   },
 
   // ---------- Task Bar ----------
@@ -128,25 +139,19 @@ export const styles = StyleSheet.create({
 
   // ---------- Footer ----------
   footerContainer: {
-    padding: 20,
-    borderTopWidth: 1,
-    borderColor: COLOR_1,
-    alignItems: 'center',
-    backgroundColor: COLOR_2,
+    paddingVertical: 25,
+    paddingHorizontal: 20,
+    backgroundColor: COLOR_1,
+    alignItems: 'flex-start',
   },
   footerText: {
-    marginBottom: 10,
+    marginBottom: 12,
     fontSize: 14,
-    color: COLOR_1,
+    color: COLOR_2,
   },
   footerIcons: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 15,
-  },
-  footerIcon: {
-    fontSize: 24,
-    marginHorizontal: 10,
-    color: COLOR_1,
+    alignItems: 'center',
+    gap: 20,
   },
 });
