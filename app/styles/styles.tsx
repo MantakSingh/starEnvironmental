@@ -134,7 +134,7 @@ export const styles = StyleSheet.create({
   taskButtonText: {
     color: COLOR_2,
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 20,
   },
 
   // ---------- Footer ----------
