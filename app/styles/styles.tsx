@@ -1,7 +1,7 @@
-// styles.ts
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  // ---------- Existing styles ----------
   container: {
     flex: 1,
     backgroundColor: '#f8f8f8',
@@ -74,5 +74,36 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: '600',
+  },
+
+  // ---------- Task bar styles ----------
+  taskBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#004aad',
+    paddingVertical: 20, // taller bar
+    paddingHorizontal: 12,
+    zIndex: 10,
+  },
+  faviconContainer: {
+    marginRight: 15,
+  },
+  favicon: {
+    fontSize: 28, // larger star
+  },
+  pagesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    flex: 1,
+  },
+  taskButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 6,
+  },
+  taskButtonText: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 16,
   },
 });
