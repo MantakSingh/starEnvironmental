@@ -1,11 +1,14 @@
+// styles/styles.ts
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  // ---------- Existing styles ----------
+  // ---------- Container & General ----------
   container: {
     flex: 1,
     backgroundColor: '#f8f8f8',
   },
+
+  // ---------- Hero Section ----------
   hero: {
     padding: 40,
     backgroundColor: '#004aad',
@@ -21,6 +24,8 @@ export const styles = StyleSheet.create({
     color: '#fff',
     marginTop: 10,
   },
+
+  // ---------- Sections ----------
   section: {
     padding: 20,
   },
@@ -33,6 +38,8 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
   },
+
+  // ---------- Card Styles ----------
   card: {
     backgroundColor: '#fff',
     padding: 15,
@@ -64,6 +71,8 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 8,
   },
+
+  // ---------- Button ----------
   button: {
     backgroundColor: '#004aad',
     padding: 12,
@@ -76,12 +85,12 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
-  // ---------- Task bar styles ----------
+  // ---------- Task Bar ----------
   taskBar: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#004aad',
-    paddingVertical: 20, // taller bar
+    paddingVertical: 20,
     paddingHorizontal: 12,
     zIndex: 10,
   },
@@ -89,7 +98,7 @@ export const styles = StyleSheet.create({
     marginRight: 15,
   },
   favicon: {
-    fontSize: 28, // larger star
+    fontSize: 28,
   },
   pagesContainer: {
     flexDirection: 'row',
@@ -105,5 +114,28 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '700',
     fontSize: 16,
+  },
+
+  // ---------- Footer ----------
+  footerContainer: {
+    padding: 20,
+    borderTopWidth: 1,
+    borderColor: '#ccc',
+    alignItems: 'center',
+    backgroundColor: '#f8f8f8',
+  },
+  footerText: {
+    marginBottom: 10,
+    fontSize: 14,
+    color: '#555',
+  },
+  footerIcons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 15,
+  },
+  footerIcon: {
+    fontSize: 24,
+    marginHorizontal: 10,
   },
 });
