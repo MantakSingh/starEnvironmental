@@ -15,20 +15,16 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: 'Water Treatment Facility',
-    image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12',
+    title: 'Federal Way AM/PM',
+    image: require('../assets/images/projects/FederalWayArco.jpg'),
   },
   {
-    title: 'Soil Remediation Site',
+    title: 'Watsonville AM/PM',
     image: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231',
   },
   {
-    title: 'Industrial Waste Cleanup',
+    title: 'Fresno AM/PM',
     image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a',
-  },
-  {
-    title: 'Environmental Monitoring',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e',
   },
 ];
 

@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 // ----- Brand Colors -----
 const COLOR_1 = '#002f78';   // Primary blue
-const COLOR_2 = '#FDFEFE';   // Bright white background
+const COLOR_2 = '#fefefd';   // Bright white background
 
 export const styles = StyleSheet.create({
   // ---------- Container & General ----------
