@@ -27,6 +27,36 @@ export const styles = StyleSheet.create({
     color: COLOR_2,
     marginTop: 10,
   },
+  // ---------- Hero Banner (Project Page) ----------
+  heroBannerContainer: {
+    height: 320,           // Visible hero height
+    width: '100%',
+    overflow: 'hidden',    // Enables controlled cropping
+    position: 'relative',
+  },
+  heroBannerImage: {
+    width: '100%',
+    height: 420,           // Taller than container for crop control
+    marginTop: -100,       // Shift image up to show desired portion
+    resizeMode: 'cover',
+  },
+  heroBannerOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heroBannerTitle: {
+    color: '#fff',
+    fontSize: 34,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    letterSpacing: 1,
+  },
 
   // ---------- Sections ----------
   section: {
