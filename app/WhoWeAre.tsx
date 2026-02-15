@@ -1,14 +1,7 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import BulletPoint from './styles/bulletPoints';
 import { styles as globalStyles } from './styles/styles';
-
-// Reusable bullet component
-const BulletPoint = ({ text }: { text: string }) => (
-  <View style={localStyles.bulletItem}>
-    <Text style={localStyles.bullet}>•</Text>
-    <Text style={[globalStyles.sectionText, localStyles.bulletText]}>{text}</Text>
-  </View>
-);
 
 export default function Index() {
   const beliefs = [
@@ -56,21 +49,3 @@ export default function Index() {
     </ScrollView>
   );
 }
-
-const localStyles = StyleSheet.create({
-  bulletItem: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginVertical: 4,
-    paddingLeft: 10, // indent relative to parent text
-  },
-  bullet: {
-    fontSize: 16,
-    lineHeight: 22,
-    marginRight: 6,
-  },
-  bulletText: {
-    flex: 1,
-    lineHeight: 22,
-  },
-});
