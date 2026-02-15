@@ -37,7 +37,7 @@ export default function Projects() {
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Our Projects</Text>
       <Text style={[styles.sectionText, { marginBottom: 20 }]}>
-        A selection of recent environmental and industrial projects.
+        Our recent work
       </Text>
 
       <View style={styles.projectGrid}>

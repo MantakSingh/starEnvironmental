@@ -20,15 +20,7 @@ export default function Footer() {
         <TouchableOpacity onPress={() => openLink("https://www.facebook.com/yourpage")}>
           <Ionicons name="logo-facebook" size={22} color="#fff" />
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => openLink("https://www.twitter.com/yourprofile")}>
-          <Ionicons name="logo-twitter" size={22} color="#fff" />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => openLink("https://www.instagram.com/yourprofile")}>
-          <Ionicons name="logo-instagram" size={22} color="#fff" />
-        </TouchableOpacity>
-
+        
         <TouchableOpacity onPress={() => openLink("https://www.linkedin.com/company/yourcompany")}>
           <Ionicons name="logo-linkedin" size={22} color="#fff" />
         </TouchableOpacity>

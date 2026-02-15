@@ -16,8 +16,8 @@ export default function Layout() {
   // ---------------- Pages ----------------
   const headerPages: Page[] = [
     { name: 'Home', route: '/' },
-    { name: 'About', route: '/about' },
-    { name: 'Services', route: '/services' },
+    { name: 'Who We Are', route: '/WhoWeAre' },
+    { name: 'What We Do', route: '/WhatWeDo' },
     { name: 'Projects', route: '/projects' },
     { name: 'Contact', route: '/contact' },
   ];
