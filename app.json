@@ -23,7 +23,7 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/Blue_Star_symbol.png"
     },
     "plugins": [
       "expo-router",
