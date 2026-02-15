@@ -13,7 +13,7 @@ export default function Index() {
   ];
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1}}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       {/* Hero Section */}
       <View style={globalStyles.heroBannerContainer}>
         <Image
@@ -22,13 +22,12 @@ export default function Index() {
         />
 
         <View style={globalStyles.heroBannerOverlay}>
-          <Text style={globalStyles.heroBannerTitle}>
-            Who We Are
-          </Text>
+          <Text style={globalStyles.heroBannerTitle}>Who We Are</Text>
         </View>
       </View>
+
       {/* Main Section */}
-      <View style={[globalStyles.section, { minHeight: 400 }]}>
+      <View style={globalStyles.section}>
         <Text style={globalStyles.sectionTitle}>
           Built on Family Values. Driven by Experience.
         </Text>
