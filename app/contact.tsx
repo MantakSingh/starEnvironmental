@@ -3,11 +3,10 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   Alert,
-  Linking,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { styles } from "./styles/styles";
 
@@ -41,24 +40,14 @@ export default function Contact() {
         <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
           <Ionicons name="call-outline" size={18} color="#002f78" />
           <Text style={[styles.cardText, { marginLeft: 8 }]}>
-            (123) 456-7890
+            (253) 344-9113
           </Text>
         </View>
 
         <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
           <Ionicons name="mail-outline" size={18} color="#002f78" />
           <Text style={[styles.cardText, { marginLeft: 8 }]}>
-            example@gmail.com
-          </Text>
-        </View>
-
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Ionicons name="globe-outline" size={18} color="#002f78" />
-          <Text
-            style={[styles.cardText, { marginLeft: 8 }]}
-            onPress={() => Linking.openURL("https://www.mybusiness.com")}
-          >
-            www.mybusiness.com
+            kensinghb@gmail.com
           </Text>
         </View>
       </View>
