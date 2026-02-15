@@ -26,7 +26,7 @@ export default function Layout() {
   return (
     <View style={{ flex: 1 }}>
 
-      {/* ---------------- Fixed Task Bar ---------------- */}
+      {/* ---------------- Task Bar ---------------- */}
       <View
         style={[
           styles.taskBar,
