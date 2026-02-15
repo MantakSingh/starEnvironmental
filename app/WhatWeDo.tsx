@@ -7,13 +7,12 @@ import { styles as globalStyles } from './styles/styles';
 const { width: screenWidth } = Dimensions.get('window');
 
 // Choose an aspect ratio for your hero image (height / width)
-// Example: 9 / 16 for 16:9
 const HERO_ASPECT_RATIO = 9 / 16;
 const heroHeight = screenWidth * HERO_ASPECT_RATIO;
 
 export default function Index() {
   const services = [
-    "Ground-up commercial construction",
+    "Ground-up commercial and residential construction",
     "Site development and concrete work",
     "Fuel system installation and upgrades",
     "Underground storage tank work",
@@ -46,25 +45,25 @@ export default function Index() {
       {/* Page Content */}
       <View style={{ paddingHorizontal: 16, paddingTop: 16 }}>
         <Text style={globalStyles.sectionTitle}>
-          Commercial Construction with Specialized Experience
+          Commercial and Residential Construction with Specialized Experience
         </Text>
 
         <Text style={[globalStyles.sectionText, { marginTop: 8 }]}>
-          We provide full-service construction solutions for commercial properties. Our project history has primarily involved gas station and convenience store facilities, giving us extensive experience in fuel systems, site development, and regulatory compliance.
+          We provide full-service construction solutions for both commercial and residential properties. While our project history has primarily involved gas stations and convenience store facilities, our team is equipped to handle projects of all types and sizes, from homes to complex commercial builds.
         </Text>
 
-        <Text style={[globalStyles.sectionText, { marginTop: 10 }]}>
+        <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
           Our services include:
         </Text>
 
-        <View style={{ marginTop: 8 }}>
+        <View style={{ marginTop: 4 }}>
           {services.map((service, index) => (
             <BulletPoint key={index} text={service} />
           ))}
         </View>
 
         <Text style={[globalStyles.sectionText, { marginTop: 10 }]}>
-          Although much of our completed work has been in the petroleum sector, our team is fully equipped to take on a variety of commercial construction projects. The same precision, safety standards, and attention to detail apply to every job we undertake.
+          Whether commercial or residential, our team applies the same precision, safety standards, and attention to detail to every project. From ground-up construction to remodels and maintenance, we ensure high-quality results for every client.
         </Text>
       </View>
     </ScrollView>

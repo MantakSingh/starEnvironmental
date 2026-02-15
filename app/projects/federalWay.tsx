@@ -35,7 +35,7 @@ export default function FederalWay() {
         <Text style={globalStyles.sectionTitle}>
           Federal Way AM/PM
         </Text>
-        <Text style={[globalStyles.sectionText, { marginTop: 10 }]}>
+        <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
           Project Overview:
         </Text>
         <View style={{ marginTop: 8 }}>
@@ -43,7 +43,7 @@ export default function FederalWay() {
             <BulletPoint key={index} text={projects} />
           ))}
         </View>
-        <Text style={[globalStyles.sectionText, { marginTop: 10 }]}>
+        <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
           Project Highlights:
         </Text>
         <View style={{ marginTop: 8 }}>

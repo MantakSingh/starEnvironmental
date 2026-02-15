@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.6)', // Semi-transparent overlay for text contrast
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -67,6 +67,12 @@ export const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 12,
+    color: COLOR_1,
+  },
+  sectionSubtitle: {
+    fontSize: 18,           // slightly smaller than title
+    fontWeight: '600',      // semi-bold for emphasis
+    marginBottom: 8,        // space before the text or bullets
     color: COLOR_1,
   },
   sectionText: {
