@@ -7,10 +7,7 @@ export default function Index() {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       {/* Main Section */}
       <View style={[globalStyles.section, { height: 400 }]}>
-        <Text style={globalStyles.sectionTitle}>Welcome to Star Environmental</Text>
-        <Text style={globalStyles.sectionText}>
-          Fresno
-        </Text>
+        <Text style={globalStyles.sectionTitle}>Fresno</Text>
       </View>
     </ScrollView>
   );

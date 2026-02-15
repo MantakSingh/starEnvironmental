@@ -6,22 +6,28 @@ import { styles } from './styles/styles';
 // ---------------- Types ----------------
 type Project = {
   title: string;
-  image: number; // require() returns a number in React Native
+  image: number;
+  route: string;
 };
 
 // ---------------- Project Data ----------------
 const projects: Project[] = [
-  { title: 'Federal Way', image: require('../assets/images/projects/FederalWayArco.jpg') },
-  { title: 'Watsonville', image: require('../assets/images/projects/WatsonvilleArco.jpg') },
-  { title: 'Fresno', image: require('../assets/images/projects/FresnoArco.jpg') },
+  {
+    title: 'Federal Way AM/PM',
+    image: require('../assets/images/projects/FederalWayArco.jpg'),
+    route: './projects/federalWay',
+  },
+  {
+    title: 'Watsonville AM/PM',
+    image: require('../assets/images/projects/WatsonvilleArco.jpg'),
+    route: './projects/watsonville',
+  },
+  {
+    title: 'Fresno AM/PM',
+    image: require('../assets/images/projects/FresnoArco.jpg'),
+    route: './projects/fresno',
+  },
 ];
-
-// ---------------- Routes ----------------
-const projectPages: Record<string, string> = {
-  'Federal Way': '/projects/federal-way',
-  'Watsonville': '/projects/watsonville',
-  'Fresno': '/projects/fresno',
-};
 
 // ---------------- Component ----------------
 export default function Projects() {
@@ -39,16 +45,18 @@ export default function Projects() {
           <TouchableOpacity
             key={index}
             style={styles.projectCard}
-            onPress={() => router.push(projectPages[project.title])}
+            onPress={() => router.push(project.route)}
             activeOpacity={0.8}
           >
             <View style={styles.projectImageContainer}>
               <Image
-                source={project.image} // local require
+                source={project.image}
                 style={styles.projectImage}
                 resizeMode="cover"
               />
-              <Text style={styles.projectTitleOverlay}>{project.title}</Text>
+              <Text style={styles.projectTitleOverlay}>
+                {project.title}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
