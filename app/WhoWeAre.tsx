@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 import BulletPoint from './styles/bulletPoints';
 import { styles as globalStyles } from './styles/styles';
 
@@ -13,7 +13,20 @@ export default function Index() {
   ];
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1}}>
+      {/* Hero Section */}
+      <View style={globalStyles.heroBannerContainer}>
+        <Image
+          source={require('../assets/images/ExampleWhoWeAre.jpg')}
+          style={globalStyles.heroBannerImage}
+        />
+
+        <View style={globalStyles.heroBannerOverlay}>
+          <Text style={globalStyles.heroBannerTitle}>
+            Who We Are
+          </Text>
+        </View>
+      </View>
       {/* Main Section */}
       <View style={[globalStyles.section, { minHeight: 400 }]}>
         <Text style={globalStyles.sectionTitle}>
