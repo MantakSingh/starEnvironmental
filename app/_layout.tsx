@@ -13,14 +13,19 @@ type Page = {
 export default function Layout() {
   const router = useRouter();
 
-  const pages: Page[] = [
+  // ---------------- Pages ----------------
+  const headerPages: Page[] = [
     { name: 'Home', route: '/' },
     { name: 'About', route: '/about' },
     { name: 'Services', route: '/services' },
     { name: 'Projects', route: '/projects' },
     { name: 'Contact', route: '/contact' },
   ];
-
+  const projectPages: Page[] = [
+    { name: 'Federal Way', route: '/projects/federal-way' },
+    { name: 'Watsonville', route: '/projects/watsonville' },
+    { name: 'Fresno', route: '/projects/fresno' },
+  ];
   const TASKBAR_HEIGHT = 70;
 
   return (
@@ -45,7 +50,7 @@ export default function Layout() {
         </View>
 
         <View style={styles.pagesContainer}>
-          {pages.map((page) => (
+          {headerPages.map((page) => (
             <TouchableOpacity
               key={page.name}
               style={styles.taskButton}
@@ -73,7 +78,6 @@ export default function Layout() {
           <Footer />
         </ScrollView>
       </View>
-
     </View>
   );
 }
