@@ -43,7 +43,7 @@ export default function Index() {
         />
         <View style={globalStyles.heroBannerOverlay}>
           <Text style={globalStyles.heroBannerTitle}>
-            Building Towards A Brighter Tommorow
+            Building A Brighter Tomorrow
           </Text>
         </View>
       </View>

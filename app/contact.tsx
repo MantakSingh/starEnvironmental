@@ -1,6 +1,8 @@
 // app/contact.tsx
+import emailjs from "@emailjs/browser";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
+
 import {
   Alert,
   Text,
@@ -16,16 +18,35 @@ export default function Contact() {
   const [message, setMessage] = useState("");
 
   const handleSubmit = () => {
-    if (!name || !email || !message) {
-      Alert.alert("Please fill out all fields");
-      return;
-    }
+  if (!name || !email || !message) {
+    Alert.alert("Please fill out all fields");
+    return;
+  }
 
-    Alert.alert("Message Sent!", `Thank you, ${name}. We'll get back to you soon.`);
-    setName("");
-    setEmail("");
-    setMessage("");
+  const templateParams = {
+    name: name,
+    email: email,
+    message: message,
   };
+
+  emailjs
+    .send(
+      "YOUR_SERVICE_ID",
+      "YOUR_TEMPLATE_ID",
+      templateParams,
+      "YOUR_PUBLIC_KEY"
+    )
+    .then(() => {
+      Alert.alert("Message Sent!", "We'll get back to you soon.");
+      setName("");
+      setEmail("");
+      setMessage("");
+    })
+    .catch((error) => {
+      console.log(error);
+      Alert.alert("Error sending message. Please try again.");
+    });
+};
 
   return (
     <View style={styles.section}>
