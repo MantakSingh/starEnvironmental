@@ -6,16 +6,19 @@ import { styles as globalStyles } from '../styles/styles';
 export default function Watsonville() {
   const projectOverview = [
     "Location: Watsonville, CA",
-    "Type: New construction – built from the ground up",
-    "Scope: Complete site development including foundation, canopy, pump islands, convenience store, and landscaping"
+    "Year Completed: 2013",
+    "Construction Timeline: 8 months",
+    "Type: Bank-repossessed, half-finished project completed from existing structure",
+    "Scope: Full site completion including fuel canopy, pump islands, convenience store build-out, combo car wash, propane station, and landscaping"
   ];
 
   const projectHighlights = [
-    "Built entirely from scratch, delivering a modern, efficient station tailored for high traffic and local needs",
-    "Custom-designed canopy and pump layout to ensure smooth vehicle flow and safety",
-    "Implemented energy-efficient lighting and materials throughout the site",
-    "Full landscaping and exterior design to create an inviting customer experience",
-    "Project completed on time and in full compliance with local building codes"
+    "Successfully revived and completed a bank-repossessed, partially constructed project",
+    "Installed a dual-option combo car wash system offering both laser touchless and soft-brush wash options",
+    "Customer-selectable wash experience to serve diverse market preferences",
+    "Integrated on-site propane filling station",
+    "Delivered a fully operational, modern station tailored to high local demand",
+    "Completed efficiently within an 8-month construction timeline"
   ];
 
   return (
@@ -39,16 +42,18 @@ export default function Watsonville() {
         <Text style={globalStyles.sectionTitle}>
           Watsonville AM/PM
         </Text>
+
         <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
-          Project Overview:
+          Project Overview
         </Text>
         <View style={{ marginTop: 8 }}>
           {projectOverview.map((item, index) => (
             <BulletPoint key={index} text={item} />
           ))}
         </View>
-        <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
-          Project Highlights:
+
+        <Text style={[globalStyles.sectionSubtitle, { marginTop: 20 }]}>
+          Project Highlights
         </Text>
         <View style={{ marginTop: 8 }}>
           {projectHighlights.map((highlight, index) => (

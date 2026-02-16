@@ -1,8 +1,5 @@
-// app/contact.tsx
-import emailjs from "@emailjs/browser";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
-
 import {
   Alert,
   Text,
@@ -18,45 +15,28 @@ export default function Contact() {
   const [message, setMessage] = useState("");
 
   const handleSubmit = () => {
-  if (!name || !email || !message) {
-    Alert.alert("Please fill out all fields");
-    return;
-  }
+    if (!name || !email || !message) {
+      Alert.alert("Please fill out all fields");
+      return;
+    }
 
-  const templateParams = {
-    name: name,
-    email: email,
-    message: message,
+    Alert.alert(
+      "Message Sent!",
+      `Thank you, ${name}. We'll get back to you soon.`
+    );
+
+    setName("");
+    setEmail("");
+    setMessage("");
   };
-
-  emailjs
-    .send(
-      "YOUR_SERVICE_ID",
-      "YOUR_TEMPLATE_ID",
-      templateParams,
-      "YOUR_PUBLIC_KEY"
-    )
-    .then(() => {
-      Alert.alert("Message Sent!", "We'll get back to you soon.");
-      setName("");
-      setEmail("");
-      setMessage("");
-    })
-    .catch((error) => {
-      console.log(error);
-      Alert.alert("Error sending message. Please try again.");
-    });
-};
 
   return (
     <View style={styles.section}>
-      {/* Page Title */}
       <Text style={styles.sectionTitle}>Contact Us</Text>
       <Text style={[styles.sectionText, { marginBottom: 25 }]}>
-        Have a project in mind? Get in touch with our team today.
+        Have a project in mind? Are you in need of a sub-contractor? Get in touch with our team today.
       </Text>
 
-      {/* Contact Info Card */}
       <View style={styles.card}>
         <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
           <Ionicons name="call-outline" size={18} color="#002f78" />
@@ -73,7 +53,6 @@ export default function Contact() {
         </View>
       </View>
 
-      {/* Contact Form Card */}
       <View style={[styles.card, { marginTop: 20 }]}>
         <TextInput
           style={styles.formInput}
@@ -85,11 +64,12 @@ export default function Contact() {
 
         <TextInput
           style={styles.formInput}
-          placeholder="Your Email"
+          placeholder="Subject"
           placeholderTextColor="#888"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
+          autoCapitalize="none"
         />
 
         <TextInput

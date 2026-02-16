@@ -1,7 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Slot, useRouter } from 'expo-router';
 import React from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Footer from './footer';
 import { styles } from './styles/styles';
 
@@ -45,10 +44,16 @@ export default function Layout() {
           },
         ]}
       >
-        <View style={styles.faviconContainer}>
-          <Ionicons name="star" size={28} color="#fff" />
+        <View style={{ width: 70, justifyContent: 'center', alignItems: 'center' }}>
+          <Image
+            source={require('../assets/images/StarLogoTestWhite.png')}
+            style={{
+              height: 50,
+              aspectRatio: 1,
+              resizeMode: 'contain',
+            }}
+          />
         </View>
-
         <View style={styles.pagesContainer}>
           {headerPages.map((page) => (
             <TouchableOpacity

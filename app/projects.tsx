@@ -37,7 +37,7 @@ export default function Projects() {
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Our Projects</Text>
       <Text style={[styles.sectionText, { marginBottom: 20 }]}>
-        Our recent work
+        Our past work
       </Text>
 
       <View style={styles.projectGrid}>

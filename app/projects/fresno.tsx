@@ -6,16 +6,19 @@ import { styles as globalStyles } from '../styles/styles';
 export default function FresnoArco() {
   const projectOverview = [
     "Location: Fresno, CA",
-    "Type: New construction – built from the ground up",
-    "Scope: Complete site development including foundation, canopy, pump islands, convenience store, and landscaping"
+    "Year Completed: 2010",
+    "Construction Timeline: 12 months",
+    "Type: Ground-up new construction",
+    "Scope: Complete site development including foundation, ARCO-standard canopy, pump islands, convenience store, and landscaping",
+    "At Completion: Largest AM/PM store in California’s Central Valley"
   ];
 
   const projectHighlights = [
-    "Constructed entirely from scratch, delivering a modern, high-traffic station",
-    "Custom canopy and pump island layout to maximize efficiency and safety",
-    "Energy-efficient lighting and materials implemented throughout the site",
-    "Landscaping and exterior design tailored for an inviting customer experience",
-    "Project completed on schedule and fully compliant with local building codes"
+    "Built entirely from scratch to serve a high-traffic Central Valley market",
+    "Designed and constructed using ARCO brand standards for pumps and canopy layout",
+    "Expanded store footprint compared to regional locations at the time",
+    "Full exterior landscaping to enhance curb appeal and customer experience",
+    "Completed on schedule and in full compliance with all local building codes"
   ];
 
   return (
@@ -39,16 +42,18 @@ export default function FresnoArco() {
         <Text style={globalStyles.sectionTitle}>
           Fresno AM/PM
         </Text>
+
         <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
-          Project Overview:
+          Project Overview
         </Text>
         <View style={{ marginTop: 8 }}>
           {projectOverview.map((item, index) => (
             <BulletPoint key={index} text={item} />
           ))}
         </View>
-        <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
-          Project Highlights:
+
+        <Text style={[globalStyles.sectionSubtitle, { marginTop: 20 }]}>
+          Project Highlights
         </Text>
         <View style={{ marginTop: 8 }}>
           {projectHighlights.map((highlight, index) => (

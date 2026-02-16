@@ -17,8 +17,7 @@ export default function Index() {
     "Fuel system installation and upgrades",
     "Underground storage tank work",
     "Canopy installation",
-    "Remodels and tenant improvements",
-    "Maintenance and repair services"
+    "Remodels and tenant improvements"
   ];
 
   return (

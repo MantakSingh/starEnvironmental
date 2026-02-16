@@ -44,7 +44,7 @@ export default function Index() {
           As a family business, every project is personal. Our name stands behind every job we complete. We focus on long-term partnerships, clear communication, and delivering work we are proud to put our name on.
         </Text>
 
-        <Text style={[globalStyles.sectionText, { marginTop: 10 }]}>
+        <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]}>
           We believe in:
         </Text>
 

@@ -146,8 +146,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLOR_1,
-    paddingVertical: 20,
     paddingHorizontal: 12,
+    paddingLeft: 40,   
     zIndex: 10,
   },
   faviconContainer: {
