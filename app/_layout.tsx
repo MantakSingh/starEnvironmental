@@ -48,7 +48,7 @@ export default function Layout() {
           <Image
             source={require('../assets/images/StarLogoTestWhite.png')}
             style={{
-              height: 50,
+              height: 70,
               aspectRatio: 1,
               resizeMode: 'contain',
             }}
