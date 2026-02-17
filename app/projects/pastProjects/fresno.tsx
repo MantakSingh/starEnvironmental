@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Platform, ScrollView, Text, View } from 'react-native';
-import BulletPoint from '../styles/bulletPoints';
-import { styles as globalStyles } from '../styles/styles';
+import BulletPoint from './../../styles/bulletPoints';
+import { styles as globalStyles } from './../../styles/styles';
 
 // Only import Head if on web
 let Head;
@@ -42,7 +42,7 @@ export default function FresnoArco() {
       {/* Hero Section */}
       <View style={globalStyles.heroBannerContainer}>
         <Image
-          source={require('../../assets/images/projects/FresnoArco.jpg')}
+          source={require('../../../assets/images/projects/FresnoArco.jpg')}
           style={globalStyles.heroBannerImage}
           accessibilityLabel="Fresno AM/PM gas station with convenience store and ARCO-standard canopy"
         />

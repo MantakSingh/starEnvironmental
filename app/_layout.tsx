@@ -14,6 +14,12 @@ import { styles } from './styles/styles';
 
 type Page = { name: string; route: string };
 
+// ---------------- Projects Dropdown Options ----------------
+const projects = [
+  { name: 'Current Projects', route: '/projects/current' }, // edit redirect
+  { name: 'Past Projects', route: '/projects/past' },       // edit redirect
+];
+
 export default function Layout() {
   const router = useRouter();
   const TASKBAR_HEIGHT = 70;
@@ -21,16 +27,15 @@ export default function Layout() {
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  // Dropdown for "Who We Are"
+  // "Who We Are" Dropdown
   const whoPages: Page[] = [
     { name: 'About Us', route: '/WhoWeAre/AboutUs' },
     { name: 'Our Team', route: '/WhoWeAre/OurTeam' },
   ];
 
-  // Remaining header buttons
-  const headerPages: Page[] = [
+  // Other header buttons (excluding Home, Who We Are, Projects)
+  const otherPages: Page[] = [
     { name: 'What We Do', route: '/WhatWeDo' },
-    { name: 'Projects', route: '/projects' },
     { name: 'Contact', route: '/contact' },
   ];
 
@@ -54,11 +59,7 @@ export default function Layout() {
         <View style={{ width: 70, justifyContent: 'center', alignItems: 'center' }}>
           <Image
             source={require('../assets/images/StarLogoTestWhite.png')}
-            style={{
-              height: 70,
-              aspectRatio: 1,
-              resizeMode: 'contain',
-            }}
+            style={{ height: 70, aspectRatio: 1, resizeMode: 'contain' }}
           />
         </View>
 
@@ -72,7 +73,7 @@ export default function Layout() {
             <Text style={styles.taskButtonText}>Home</Text>
           </TouchableOpacity>
 
-          {/* Who We Are (Dropdown) */}
+          {/* Who We Are */}
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() =>
@@ -84,16 +85,43 @@ export default function Layout() {
             </Text>
           </TouchableOpacity>
 
-          {/* Other Header Buttons */}
-          {headerPages.map((page) => (
-            <TouchableOpacity
-              key={page.name}
-              style={styles.taskButton}
-              onPress={() => router.push({ pathname: page.route })}
-            >
-              <Text style={styles.taskButtonText}>{page.name}</Text>
-            </TouchableOpacity>
-          ))}
+          {/* What We Do */}
+          {otherPages
+            .filter((p) => p.name === 'What We Do')
+            .map((page) => (
+              <TouchableOpacity
+                key={page.name}
+                style={styles.taskButton}
+                onPress={() => router.push(page.route)}
+              >
+                <Text style={styles.taskButtonText}>{page.name}</Text>
+              </TouchableOpacity>
+            ))}
+
+          {/* Projects Dropdown */}
+          <TouchableOpacity
+            style={styles.taskButton}
+            onPress={() =>
+              setActiveDropdown(activeDropdown === 'projects' ? null : 'projects')
+            }
+          >
+            <Text style={styles.taskButtonText}>
+              Projects {activeDropdown === 'projects' ? '▲' : '▼'}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Contact */}
+          {otherPages
+            .filter((p) => p.name === 'Contact')
+            .map((page) => (
+              <TouchableOpacity
+                key={page.name}
+                style={styles.taskButton}
+                onPress={() => router.push(page.route)}
+              >
+                <Text style={styles.taskButtonText}>{page.name}</Text>
+              </TouchableOpacity>
+            ))}
         </View>
       </View>
 
@@ -108,18 +136,35 @@ export default function Layout() {
               ]}
             >
               <ScrollView>
-                {whoPages.map((item) => (
-                  <TouchableOpacity
-                    key={item.name}
-                    style={dropdownStyles.dropdownItem}
-                    onPress={() => {
-                      setActiveDropdown(null);
-                      router.push(item.route);
-                    }}
-                  >
-                    <Text style={dropdownStyles.dropdownText}>{item.name}</Text>
-                  </TouchableOpacity>
-                ))}
+                {/* Who We Are Dropdown */}
+                {activeDropdown === 'who' &&
+                  whoPages.map((item) => (
+                    <TouchableOpacity
+                      key={item.name}
+                      style={dropdownStyles.dropdownItem}
+                      onPress={() => {
+                        setActiveDropdown(null);
+                        router.push(item.route);
+                      }}
+                    >
+                      <Text style={dropdownStyles.dropdownText}>{item.name}</Text>
+                    </TouchableOpacity>
+                  ))}
+
+                {/* Projects Dropdown */}
+                {activeDropdown === 'projects' &&
+                  projects.map((item) => (
+                    <TouchableOpacity
+                      key={item.name}
+                      style={dropdownStyles.dropdownItem}
+                      onPress={() => {
+                        setActiveDropdown(null);
+                        router.push(item.route);
+                      }}
+                    >
+                      <Text style={dropdownStyles.dropdownText}>{item.name}</Text>
+                    </TouchableOpacity>
+                  ))}
               </ScrollView>
             </View>
           </View>
@@ -130,10 +175,7 @@ export default function Layout() {
       <View style={{ flex: 1, marginTop: TASKBAR_HEIGHT }}>
         <ScrollView
           style={{ flex: 1 }}
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: 'space-between',
-          }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}
         >
           <Slot />
           <Footer />

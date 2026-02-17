@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Platform, ScrollView, Text, View } from 'react-native';
-import BulletPoint from '../styles/bulletPoints';
-import { styles as globalStyles } from '../styles/styles';
+import BulletPoint from './../../styles/bulletPoints';
+import { styles as globalStyles } from './../../styles/styles';
 
 // Only import Head if on web
 let Head;
@@ -46,7 +46,7 @@ export default function Lakewood() {
       {/* Hero Section */}
       <View style={globalStyles.heroBannerContainer}>
         <Image
-          source={require('../../assets/images/projects/lakewoodArco.jpg')}
+          source={require('../../../assets/images/projects/lakewoodArco.jpg')}
           style={[globalStyles.heroBannerImage, { marginTop: 0 }]}
           accessibilityLabel="Lakewood AM/PM gas station and double car wash"
         />

@@ -267,4 +267,47 @@ dropdownText: {
   color: '#222',
   fontWeight: '500',
 },
+// ---------- Team Cards ----------
+teamGrid: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  marginHorizontal: -6,
+},
+
+teamCard: {
+  width: '22%',            // smaller than before (about 4 per row on large screens)
+  aspectRatio: 1,
+  backgroundColor: '#ffffff',
+  borderRadius: 10,
+  marginBottom: 16,
+  overflow: 'hidden',
+  shadowColor: '#000',
+  shadowOpacity: 0.08,
+  shadowRadius: 6,
+  elevation: 2,
+},
+
+teamImageContainer: {
+  flex: 1,
+  position: 'relative',
+},
+
+teamImage: {
+  width: '100%',
+  height: '100%',
+  resizeMode: 'cover',
+},
+
+teamNameOverlay: {
+  position: 'absolute',
+  bottom: 0,
+  width: '100%',
+  paddingVertical: 6,
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  textAlign: 'center',
+  fontSize: 14,           // slightly smaller text
+  fontWeight: '700',
+  color: '#002f78',
+}
 });

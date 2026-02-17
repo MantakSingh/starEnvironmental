@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Platform, ScrollView, Text, View } from 'react-native';
-import BulletPoint from '../styles/bulletPoints';
-import { styles as globalStyles } from '../styles/styles';
+import BulletPoint from './../../styles/bulletPoints';
+import { styles as globalStyles } from './../../styles/styles';
 
 // Only import Head if on web
 let Head;
@@ -43,7 +43,7 @@ export default function Watsonville() {
       {/* Hero Section */}
       <View style={globalStyles.heroBannerContainer}>
         <Image
-          source={require('../../assets/images/projects/WatsonvilleArco.jpg')}
+          source={require('../../../assets/images/projects/WatsonvilleArco.jpg')}
           style={globalStyles.heroBannerImage}
           accessibilityLabel="Watsonville AM/PM gas station with combo car wash and convenience store"
         />

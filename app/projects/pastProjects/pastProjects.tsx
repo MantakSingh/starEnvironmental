@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { styles } from './styles/styles';
+import { styles } from './../../styles/styles';
 
 // ---------------- Types ----------------
 type Project = {
@@ -14,26 +14,20 @@ type Project = {
 // ---------------- Project Data ----------------
 const projects: Project[] = [
   {
-    title: 'Lakewood AM/PM',
-    image: require('../assets/images/projects/lakewoodArco.jpg'),
-    route: './projects/currentProjects/lakewood',
-    status: 'current',
-  },
-  {
     title: 'Federal Way AM/PM',
-    image: require('../assets/images/projects/FederalWayArco.jpg'),
+    image: require('../../../assets/images/projects/FederalWayArco.jpg'),
     route: './projects/pastProjects/federalWay',
     status: 'past',
   },
   {
     title: 'Watsonville AM/PM',
-    image: require('../assets/images/projects/WatsonvilleArco.jpg'),
+    image: require('../../../assets/images/projects/WatsonvilleArco.jpg'),
     route: './projects/pastProjects/watsonville',
     status: 'past',
   },
   {
     title: 'Fresno AM/PM',
-    image: require('../assets/images/projects/FresnoArco.jpg'),
+    image: require('../../../assets/images/projects/FresnoArco.jpg'),
     route: './projects/pastProjects/fresno',
     status: 'past',
   },
@@ -72,17 +66,6 @@ export default function Projects() {
 
   return (
     <View style={styles.section}>
-      {/* Current Projects */}
-      {currentProjects.length > 0 && (
-        <>
-          <Text style={styles.sectionTitle}>Current Projects</Text>
-          <Text style={[styles.sectionText, { marginBottom: 20 }]}>
-            Projects we are currently working on
-          </Text>
-          {renderProjectGrid(currentProjects)}
-        </>
-      )}
-
       {/* Past Projects */}
       {pastProjects.length > 0 && (
         <>
