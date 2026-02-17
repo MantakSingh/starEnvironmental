@@ -235,5 +235,24 @@ projectTitleOverlay: {
   fontWeight: '700',
   color: '#002f78',
 },
+// ---------- Dropdown Menu ----------
+dropdownMenu: {
+  position: 'absolute',
+  top: 50, // adjust if needed
+  left: 0,
+  backgroundColor: '#222',
+  borderRadius: 6,
+  paddingVertical: 8,
+  minWidth: 150,
+  zIndex: 999,
+},
 
+dropdownItem: {
+  paddingVertical: 10,
+  paddingHorizontal: 15,
+},
+
+dropdownText: {
+  color: 'white',
+},
 });

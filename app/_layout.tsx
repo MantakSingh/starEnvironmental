@@ -1,7 +1,14 @@
 import { Slot, useRouter } from 'expo-router';
 import React from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Footer from './footer';
+import DropdownButton from './styles/DropdownButton';
 import { styles } from './styles/styles';
 
 type Page = {
@@ -11,21 +18,20 @@ type Page = {
 
 export default function Layout() {
   const router = useRouter();
+  const TASKBAR_HEIGHT = 70;
 
-  // ---------------- Pages ----------------
+  // Pages AFTER Who We Are
   const headerPages: Page[] = [
-    { name: 'Home', route: '/' },
-    { name: 'Who We Are', route: '/WhoWeAre' },
     { name: 'What We Do', route: '/WhatWeDo' },
     { name: 'Projects', route: '/projects' },
     { name: 'Contact', route: '/contact' },
   ];
-  const projectPages: Page[] = [
-    { name: 'Federal Way', route: '/projects/federal-way' },
-    { name: 'Watsonville', route: '/projects/watsonville' },
-    { name: 'Fresno', route: '/projects/fresno' },
+
+  const whoPages: Page[] = [
+    { name: 'Our Story', route: '/WhoWeAre#story' },
+    { name: 'Leadership', route: '/WhoWeAre#leadership' },
+    { name: 'Mission', route: '/WhoWeAre#mission' },
   ];
-  const TASKBAR_HEIGHT = 70;
 
   return (
     <View style={{ flex: 1 }}>
@@ -44,6 +50,7 @@ export default function Layout() {
           },
         ]}
       >
+        {/* Logo */}
         <View style={{ width: 70, justifyContent: 'center', alignItems: 'center' }}>
           <Image
             source={require('../assets/images/StarLogoTestWhite.png')}
@@ -54,16 +61,39 @@ export default function Layout() {
             }}
           />
         </View>
+
+        {/* Navigation */}
         <View style={styles.pagesContainer}>
+
+          {/* Home FIRST */}
+          <TouchableOpacity
+            style={styles.taskButton}
+            onPress={() => router.push('/')}
+          >
+            <Text style={styles.taskButtonText}>
+              Home
+            </Text>
+          </TouchableOpacity>
+
+          {/* Who We Are SECOND (Dropdown) */}
+          <DropdownButton
+            label="Who We Are"
+            items={whoPages}
+          />
+
+          {/* Remaining Buttons */}
           {headerPages.map((page) => (
             <TouchableOpacity
               key={page.name}
               style={styles.taskButton}
               onPress={() => router.push({ pathname: page.route })}
             >
-              <Text style={styles.taskButtonText}>{page.name}</Text>
+              <Text style={styles.taskButtonText}>
+                {page.name}
+              </Text>
             </TouchableOpacity>
           ))}
+
         </View>
       </View>
 
@@ -76,10 +106,7 @@ export default function Layout() {
             justifyContent: 'space-between',
           }}
         >
-          {/* Page Content */}
           <Slot />
-
-          {/* Footer */}
           <Footer />
         </ScrollView>
       </View>
