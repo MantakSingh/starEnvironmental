@@ -235,24 +235,37 @@ projectTitleOverlay: {
   fontWeight: '700',
   color: '#002f78',
 },
-// ---------- Dropdown Menu ----------
+// ---------- Dropdown ----------
+dropdownOverlay: {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  zIndex: 999,       // above all content
+},
+
 dropdownMenu: {
   position: 'absolute',
-  top: 50, // adjust if needed
   left: 0,
-  backgroundColor: '#222',
-  borderRadius: 6,
-  paddingVertical: 8,
-  minWidth: 150,
-  zIndex: 999,
+  backgroundColor: 'white',
+  paddingVertical: 10,
+  elevation: 10,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.2,
+  shadowRadius: 4,
 },
 
 dropdownItem: {
-  paddingVertical: 10,
-  paddingHorizontal: 15,
+  paddingVertical: 12,
+  paddingHorizontal: 20,
+  borderBottomWidth: 1,
+  borderBottomColor: '#eee',
 },
 
 dropdownText: {
-  color: 'white',
+  color: '#222',
+  fontWeight: '500',
 },
 });
