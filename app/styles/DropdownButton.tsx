@@ -2,7 +2,6 @@ import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
     ScrollView,
-    StyleSheet,
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
@@ -29,7 +28,7 @@ export default function DropdownButton({ buttons }: Props) {
   return (
     <View>
       {/* Main Taskbar Buttons */}
-      <View style={styles.taskbar}>
+      <View style={globalStyles.taskbar}>
         {buttons.map((btn) => (
           <TouchableOpacity
             key={btn.id}
@@ -48,10 +47,10 @@ export default function DropdownButton({ buttons }: Props) {
       {/* Universal Dropdown Menu */}
       {activeDropdown && (
         <TouchableWithoutFeedback onPress={() => setActiveDropdown(null)}>
-          <View style={styles.overlay}>
+          <View style={globalStyles.dropdownOverlay}>
             <View
               style={[
-                styles.dropdownMenu,
+                globalStyles.dropdownMenu,
                 { top: TASKBAR_HEIGHT, height: DROPDOWN_HEIGHT },
               ]}
             >
@@ -61,13 +60,13 @@ export default function DropdownButton({ buttons }: Props) {
                   .items.map((item) => (
                     <TouchableOpacity
                       key={item.name}
-                      style={styles.dropdownItem}
+                      style={globalStyles.dropdownItem}
                       onPress={() => {
                         setActiveDropdown(null);
                         router.push(item.route);
                       }}
                     >
-                      <Text style={styles.dropdownText}>{item.name}</Text>
+                      <Text style={globalStyles.dropdownText}>{item.name}</Text>
                     </TouchableOpacity>
                   ))}
               </ScrollView>
@@ -78,40 +77,3 @@ export default function DropdownButton({ buttons }: Props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  taskbar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#222',
-    paddingHorizontal: 16,
-    height: TASKBAR_HEIGHT,
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject, // covers full screen
-    zIndex: 100,
-  },
-  dropdownMenu: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
-  dropdownItem: {
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  dropdownText: {
-    color: '#222',
-    fontWeight: '500',
-  },
-});

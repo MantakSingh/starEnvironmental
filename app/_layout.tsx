@@ -23,9 +23,8 @@ export default function Layout() {
 
   // Dropdown for "Who We Are"
   const whoPages: Page[] = [
-    { name: 'Our Story', route: '/WhoWeAre#story' },
-    { name: 'Leadership', route: '/WhoWeAre#leadership' },
-    { name: 'Mission', route: '/WhoWeAre#mission' },
+    { name: 'About Us', route: '/WhoWeAre/AboutUs' },
+    { name: 'Our Team', route: '/WhoWeAre/OurTeam' },
   ];
 
   // Remaining header buttons

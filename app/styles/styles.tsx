@@ -237,17 +237,14 @@ projectTitleOverlay: {
 },
 // ---------- Dropdown ----------
 dropdownOverlay: {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  zIndex: 999,       // above all content
+  ...StyleSheet.absoluteFillObject, // covers entire screen
+  zIndex: 1000,                      // above all content
 },
 
 dropdownMenu: {
   position: 'absolute',
   left: 0,
+  right: 0,                          // make menu full width
   backgroundColor: 'white',
   paddingVertical: 10,
   elevation: 10,
@@ -255,6 +252,8 @@ dropdownMenu: {
   shadowOffset: { width: 0, height: 2 },
   shadowOpacity: 0.2,
   shadowRadius: 4,
+  borderBottomWidth: 1,
+  borderBottomColor: '#ccc',
 },
 
 dropdownItem: {
