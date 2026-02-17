@@ -24,6 +24,11 @@ export default function WhatWeDo() {
     "Expert canopy installation for commercial fuel sites",
     "Executing remodels, tenant improvements, and custom build-outs"
   ];
+  const certifications = [
+    "ICC U1", // Underground Tank Installation and Retrofitting
+    "ICC U2", //Underground Tank Decommissioning
+    "WA CESCL" // Certified Erosion and Sediment Control Lead
+  ];
 
   return (
     <ScrollView
@@ -81,7 +86,17 @@ export default function WhatWeDo() {
         <Text style={[globalStyles.sectionText, { marginTop: 10 }]}>
           Regardless of the project type, our team applies the same standards of precision, safety, and attention to detail to every job. From ground-up construction to remodels and tenant improvements, we ensure high-quality results that meet client expectations and stand the test of time.
         </Text>
+        
       </View>
+              <Text style={[globalStyles.sectionSubtitle, { marginTop: 10 }]} accessibilityRole="header">
+          Our Certifications Include:
+        </Text>
+
+        <View style={{ marginTop: 4 }}>
+          {certifications.map((certification, index) => (
+            <BulletPoint key={index} text={certification} />
+          ))}
+        </View>
     </ScrollView>
   );
 }
