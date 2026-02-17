@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    Dimensions,
+    ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -11,76 +11,95 @@ import {
 import { styles as globalStyles } from '../styles/styles';
 
 type DropdownItem = { name: string; route: string };
-type Props = { label: string; items: DropdownItem[] };
+type Props = {
+  buttons: {
+    label: string;
+    items: DropdownItem[];
+    id: string;
+  }[];
+};
 
-export default function DropdownButton({ label, items }: Props) {
-  const [open, setOpen] = useState(false);
+const TASKBAR_HEIGHT = 60;
+const DROPDOWN_HEIGHT = 180;
+
+export default function DropdownButton({ buttons }: Props) {
   const router = useRouter();
-  const TASKBAR_HEIGHT = 60; // adjust to your taskbar
-  const screenWidth = Dimensions.get('window').width;
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   return (
-    <>
-      {/* Main Button (unchanged) */}
-      <TouchableOpacity
-        style={globalStyles.taskButton} 
-        onPress={(e) => {
-          e.stopPropagation();
-          setOpen(!open);
-        }}
-      >
-        <Text style={globalStyles.taskButtonText}>
-          {label} {open ? '▲' : '▼'}
-        </Text>
-      </TouchableOpacity>
+    <View>
+      {/* Main Taskbar Buttons */}
+      <View style={styles.taskbar}>
+        {buttons.map((btn) => (
+          <TouchableOpacity
+            key={btn.id}
+            style={globalStyles.taskButton}
+            onPress={() =>
+              setActiveDropdown(activeDropdown === btn.id ? null : btn.id)
+            }
+          >
+            <Text style={globalStyles.taskButtonText}>
+              {btn.label} {activeDropdown === btn.id ? '▲' : '▼'}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-      {/* Absolute dropdown (separate from taskbar container) */}
-      {open && (
-        <TouchableWithoutFeedback onPress={() => setOpen(false)}>
-          <View style={dropdownStyles.overlay}>
+      {/* Universal Dropdown Menu */}
+      {activeDropdown && (
+        <TouchableWithoutFeedback onPress={() => setActiveDropdown(null)}>
+          <View style={styles.overlay}>
             <View
               style={[
-                dropdownStyles.dropdownMenu,
-                { top: TASKBAR_HEIGHT, width: screenWidth },
+                styles.dropdownMenu,
+                { top: TASKBAR_HEIGHT, height: DROPDOWN_HEIGHT },
               ]}
             >
-              {items.map((item) => (
-                <TouchableOpacity
-                  key={item.name}
-                  style={dropdownStyles.dropdownItem}
-                  onPress={() => {
-                    setOpen(false);
-                    router.push(item.route);
-                  }}
-                >
-                  <Text style={dropdownStyles.dropdownText}>{item.name}</Text>
-                </TouchableOpacity>
-              ))}
+              <ScrollView>
+                {buttons
+                  .find((b) => b.id === activeDropdown)!
+                  .items.map((item) => (
+                    <TouchableOpacity
+                      key={item.name}
+                      style={styles.dropdownItem}
+                      onPress={() => {
+                        setActiveDropdown(null);
+                        router.push(item.route);
+                      }}
+                    >
+                      <Text style={styles.dropdownText}>{item.name}</Text>
+                    </TouchableOpacity>
+                  ))}
+              </ScrollView>
             </View>
           </View>
         </TouchableWithoutFeedback>
       )}
-    </>
+    </View>
   );
 }
 
-const dropdownStyles = StyleSheet.create({
+const styles = StyleSheet.create({
+  taskbar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#222',
+    paddingHorizontal: 16,
+    height: TASKBAR_HEIGHT,
+  },
   overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 999, // ensures it's above everything
+    ...StyleSheet.absoluteFillObject, // covers full screen
+    zIndex: 100,
   },
   dropdownMenu: {
     position: 'absolute',
-    left: -100, // slight left offset to align with button
-    right: 0, // stretches fully left→right
+    left: 0,
+    right: 0,
     backgroundColor: 'white',
-    paddingVertical: 10,
-    elevation: 10, // Android shadow
-    shadowColor: '#000', // iOS shadow
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    elevation: 10,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -91,5 +110,8 @@ const dropdownStyles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
-  dropdownText: { color: '#222', fontWeight: '500' },
+  dropdownText: {
+    color: '#222',
+    fontWeight: '500',
+  },
 });
