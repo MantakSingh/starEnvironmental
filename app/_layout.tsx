@@ -1,5 +1,7 @@
+import { useFonts } from 'expo-font';
 import { Slot, useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   ScrollView,
@@ -10,6 +12,8 @@ import {
 } from 'react-native';
 import Footer from './footer';
 import { styles } from './styles/styles';
+
+SplashScreen.preventAutoHideAsync();
 
 type Page = { name: string; route: string };
 
@@ -26,16 +30,26 @@ export default function Layout() {
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  // "Who We Are" Dropdown
+  // ---------------- Load Fonts ----------------
+  const [fontsLoaded] = useFonts({
+    'AlteHaasGrotesk-Regular': require('../assets/fonts/AlteHaasGroteskRegular.ttf'),
+    'AlteHaasGrotesk-Bold': require('../assets/fonts/AlteHaasGroteskBold.ttf'),
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  // ---------------- Dropdown Pages ----------------
   const whoPages: Page[] = [
     { name: 'About Us', route: '/WhoWeAre/AboutUs' },
     { name: 'Our Team', route: '/WhoWeAre/OurTeam' },
-  ];
-
-  // Other header buttons
-  const otherPages: Page[] = [
-    { name: 'What We Do', route: '/WhatWeDo' },
-    { name: 'Contact', route: '/contact' },
   ];
 
   return (
@@ -64,7 +78,6 @@ export default function Layout() {
 
         {/* Navigation */}
         <View style={styles.pagesContainer}>
-          {/* Home */}
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() => router.push('/')}
@@ -72,7 +85,6 @@ export default function Layout() {
             <Text style={styles.taskButtonText}>Home</Text>
           </TouchableOpacity>
 
-          {/* Who We Are */}
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() =>
@@ -84,7 +96,6 @@ export default function Layout() {
             </Text>
           </TouchableOpacity>
 
-          {/* What We Do */}
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() => router.push('/WhatWeDo')}
@@ -92,7 +103,6 @@ export default function Layout() {
             <Text style={styles.taskButtonText}>What We Do</Text>
           </TouchableOpacity>
 
-          {/* Projects */}
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() =>
@@ -104,7 +114,6 @@ export default function Layout() {
             </Text>
           </TouchableOpacity>
 
-          {/* Contact */}
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() => router.push('/contact')}
@@ -125,7 +134,6 @@ export default function Layout() {
               ]}
             >
               <ScrollView>
-                {/* Who We Are Dropdown */}
                 {activeDropdown === 'who' &&
                   whoPages.map((item) => (
                     <TouchableOpacity
@@ -140,7 +148,6 @@ export default function Layout() {
                     </TouchableOpacity>
                   ))}
 
-                {/* Projects Dropdown */}
                 {activeDropdown === 'projects' &&
                   projects.map((item) => (
                     <TouchableOpacity

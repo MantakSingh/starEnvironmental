@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 // ----- Brand Colors -----
-const COLOR_1 = '#002f78';   // Primary blue
-const COLOR_2 = '#fefefd';   // Bright white background
+const COLOR_1 = '#002f78';
+const COLOR_2 = '#fefefd';
 
 export const styles = StyleSheet.create({
   // ---------- Container & General ----------
@@ -19,25 +19,27 @@ export const styles = StyleSheet.create({
   },
   heroTitle: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontFamily: 'Helvetica-Black',
     color: COLOR_2,
   },
   heroSubtitle: {
     fontSize: 16,
+    fontFamily: 'Helvetica-Black',
     color: COLOR_2,
     marginTop: 10,
   },
-  // ---------- Hero Banner (Project Page) ----------
+
+  // ---------- Hero Banner ----------
   heroBannerContainer: {
-    height: 320,           // Visible hero height
+    height: 320,
     width: '100%',
-    overflow: 'hidden',    // Enables controlled cropping
+    overflow: 'hidden',
     position: 'relative',
   },
   heroBannerImage: {
     width: '100%',
-    height: 420,           // Taller than container for crop control
-    marginTop: -100,       // Shift image up to show desired portion
+    height: 420,
+    marginTop: -100,
     resizeMode: 'cover',
   },
   heroBannerOverlay: {
@@ -46,14 +48,14 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.6)', // Semi-transparent overlay for text contrast
+    backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   heroBannerTitle: {
     color: '#fff',
     fontSize: 34,
-    fontWeight: 'bold',
+    fontFamily: 'Helvetica-Black',
     textAlign: 'center',
     letterSpacing: 1,
   },
@@ -65,23 +67,24 @@ export const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'Helvetica-Black',
     marginBottom: 12,
     color: COLOR_1,
   },
   sectionSubtitle: {
-    fontSize: 18,           // slightly smaller than title
-    fontWeight: '600',      // semi-bold for emphasis
-    marginBottom: 8,        // space before the text or bullets
+    fontSize: 18,
+    fontFamily: 'Helvetica-Black',
+    marginBottom: 8,
     color: COLOR_1,
   },
   sectionText: {
     fontSize: 16,
+    fontFamily: 'Helvetica-Black',
     lineHeight: 22,
     color: COLOR_1,
   },
 
-  // ---------- Card Styles ----------
+  // ---------- Cards ----------
   card: {
     backgroundColor: '#ffffff',
     padding: 20,
@@ -94,29 +97,25 @@ export const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontFamily: 'Helvetica-Black',
     marginBottom: 6,
     color: COLOR_1,
   },
   cardText: {
     fontSize: 14,
+    fontFamily: 'Helvetica-Black',
     lineHeight: 20,
     color: COLOR_1,
   },
   cardAuthor: {
     fontSize: 14,
+    fontFamily: 'Helvetica-Black',
     fontStyle: 'italic',
     marginTop: 6,
     color: COLOR_1,
   },
-  projectImage: {
-    width: '100%',
-    height: 180,
-    borderRadius: 8,
-    marginBottom: 8,
-  },
 
-  // ---------- Form (Contact Page) ----------
+  // ---------- Form ----------
   formInput: {
     borderWidth: 1,
     borderColor: COLOR_1,
@@ -124,6 +123,7 @@ export const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 15,
     fontSize: 16,
+    fontFamily: 'Helvetica-Black',
     color: COLOR_1,
     backgroundColor: '#ffffff',
   },
@@ -137,8 +137,8 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: COLOR_2,
-    fontWeight: '600',
     fontSize: 16,
+    fontFamily: 'Helvetica-Black',
   },
 
   // ---------- Task Bar ----------
@@ -147,15 +147,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLOR_1,
     paddingHorizontal: 12,
-    paddingLeft: 40,   
+    paddingLeft: 40,
     zIndex: 10,
-  },
-  faviconContainer: {
-    marginRight: 15,
-  },
-  favicon: {
-    fontSize: 28,
-    color: COLOR_2,
   },
   pagesContainer: {
     flexDirection: 'row',
@@ -169,8 +162,8 @@ export const styles = StyleSheet.create({
   },
   taskButtonText: {
     color: COLOR_2,
-    fontWeight: '700',
     fontSize: 20,
+    fontFamily: 'Helvetica-Black',
   },
 
   // ---------- Footer ----------
@@ -183,132 +176,37 @@ export const styles = StyleSheet.create({
   footerText: {
     marginBottom: 12,
     fontSize: 14,
+    fontFamily: 'Helvetica-Black',
     color: COLOR_2,
   },
-  footerIcons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 20,
+
+  // ---------- Dropdown ----------
+  dropdownOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 101,
   },
-
-
-// ---------- Projects Grid ----------
-projectGrid: {
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  marginHorizontal: -6, // slightly smaller margin
-},
-
-projectCard: {
-  width: '30%',            // smaller than before
-  aspectRatio: 1,          // keeps square
-  backgroundColor: '#ffffff',
-  borderRadius: 10,
-  marginBottom: 16,
-  overflow: 'hidden',
-  shadowColor: '#000',
-  shadowOpacity: 0.08,
-  shadowRadius: 6,
-  elevation: 2,
-},
-
-projectImageContainer: {
-  flex: 1,
-  position: 'relative',     // needed for overlay
-},
-
-projectImage: {
-  width: '100%',
-  height: '100%',
-  resizeMode: 'cover',
-},
-
-projectTitleOverlay: {
-  position: 'absolute',
-  top: 0,
-  width: '100%',
-  paddingVertical: 6,
-  backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  textAlign: 'center',
-  fontSize: 16,
-  fontWeight: '700',
-  color: '#002f78',
-},
-// ----------  Dropdown ----------
-dropdownOverlay: {
-  ...StyleSheet.absoluteFillObject,
-  zIndex: 101,
-},
-
-dropdownMenu: {
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  backgroundColor: '#ffffff',
-  borderBottomWidth: 1,
-  borderBottomColor: '#ccc',
-
-  // shadow
-  elevation: 10,
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.2,
-  shadowRadius: 4,
-},
-
-dropdownItem: {
-  paddingVertical: 12,
-  paddingHorizontal: 20,
-  borderBottomWidth: 1,
-  borderBottomColor: '#eee',
-},
-
-dropdownText: {
-  color: '#222',
-  fontWeight: '500',
-},
-// ---------- Team Cards ----------
-teamGrid: {
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  marginHorizontal: -6,
-},
-
-teamCard: {
-  width: '22%',            // smaller than before (about 4 per row on large screens)
-  aspectRatio: 1,
-  backgroundColor: '#ffffff',
-  borderRadius: 10,
-  marginBottom: 16,
-  overflow: 'hidden',
-  shadowColor: '#000',
-  shadowOpacity: 0.08,
-  shadowRadius: 6,
-  elevation: 2,
-},
-
-teamImageContainer: {
-  flex: 1,
-  position: 'relative',
-},
-
-teamImage: {
-  width: '100%',
-  height: '100%',
-  resizeMode: 'cover',
-},
-
-teamNameOverlay: {
-  position: 'absolute',
-  bottom: 0,
-  width: '100%',
-  paddingVertical: 6,
-  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-  textAlign: 'center',
-  fontSize: 14,           // slightly smaller text
-  fontWeight: '700',
-  color: '#002f78',
-},
+  dropdownMenu: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  dropdownItem: {
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  dropdownText: {
+    color: '#222',
+    fontSize: 15,
+    fontFamily: 'Helvetica-Black',
+  },
 });
