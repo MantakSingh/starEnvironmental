@@ -235,25 +235,26 @@ projectTitleOverlay: {
   fontWeight: '700',
   color: '#002f78',
 },
-// ---------- Dropdown ----------
+// ----------  Dropdown ----------
 dropdownOverlay: {
-  ...StyleSheet.absoluteFillObject, // covers entire screen
-  zIndex: 1000,                      // above all content
+  ...StyleSheet.absoluteFillObject,
+  zIndex: 101,
 },
 
 dropdownMenu: {
   position: 'absolute',
   left: 0,
-  right: 0,                          // make menu full width
-  backgroundColor: 'white',
-  paddingVertical: 10,
+  right: 0,
+  backgroundColor: '#ffffff',
+  borderBottomWidth: 1,
+  borderBottomColor: '#ccc',
+
+  // shadow
   elevation: 10,
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 2 },
   shadowOpacity: 0.2,
   shadowRadius: 4,
-  borderBottomWidth: 1,
-  borderBottomColor: '#ccc',
 },
 
 dropdownItem: {
@@ -309,5 +310,5 @@ teamNameOverlay: {
   fontSize: 14,           // slightly smaller text
   fontWeight: '700',
   color: '#002f78',
-}
+},
 });

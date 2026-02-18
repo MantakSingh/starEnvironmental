@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import {
   Image,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -16,8 +15,8 @@ type Page = { name: string; route: string };
 
 // ---------------- Projects Dropdown Options ----------------
 const projects = [
-  { name: 'Current Projects', route: '/projects/current' }, // edit redirect
-  { name: 'Past Projects', route: '/projects/past' },       // edit redirect
+  { name: 'Current Projects', route: '/projects/currentProjects/lakewood' },
+  { name: 'Past Projects', route: '/projects/pastProjects/pastProjects' },
 ];
 
 export default function Layout() {
@@ -33,7 +32,7 @@ export default function Layout() {
     { name: 'Our Team', route: '/WhoWeAre/OurTeam' },
   ];
 
-  // Other header buttons (excluding Home, Who We Are, Projects)
+  // Other header buttons
   const otherPages: Page[] = [
     { name: 'What We Do', route: '/WhatWeDo' },
     { name: 'Contact', route: '/contact' },
@@ -86,19 +85,14 @@ export default function Layout() {
           </TouchableOpacity>
 
           {/* What We Do */}
-          {otherPages
-            .filter((p) => p.name === 'What We Do')
-            .map((page) => (
-              <TouchableOpacity
-                key={page.name}
-                style={styles.taskButton}
-                onPress={() => router.push(page.route)}
-              >
-                <Text style={styles.taskButtonText}>{page.name}</Text>
-              </TouchableOpacity>
-            ))}
+          <TouchableOpacity
+            style={styles.taskButton}
+            onPress={() => router.push('/WhatWeDo')}
+          >
+            <Text style={styles.taskButtonText}>What We Do</Text>
+          </TouchableOpacity>
 
-          {/* Projects Dropdown */}
+          {/* Projects */}
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() =>
@@ -111,27 +105,22 @@ export default function Layout() {
           </TouchableOpacity>
 
           {/* Contact */}
-          {otherPages
-            .filter((p) => p.name === 'Contact')
-            .map((page) => (
-              <TouchableOpacity
-                key={page.name}
-                style={styles.taskButton}
-                onPress={() => router.push(page.route)}
-              >
-                <Text style={styles.taskButtonText}>{page.name}</Text>
-              </TouchableOpacity>
-            ))}
+          <TouchableOpacity
+            style={styles.taskButton}
+            onPress={() => router.push('/contact')}
+          >
+            <Text style={styles.taskButtonText}>Contact</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
       {/* ---------------- Dropdown Menu ---------------- */}
       {activeDropdown && (
         <TouchableWithoutFeedback onPress={() => setActiveDropdown(null)}>
-          <View style={dropdownStyles.overlay}>
+          <View style={styles.dropdownOverlay}>
             <View
               style={[
-                dropdownStyles.dropdownMenu,
+                styles.dropdownMenu,
                 { top: TASKBAR_HEIGHT, height: DROPDOWN_HEIGHT },
               ]}
             >
@@ -141,13 +130,13 @@ export default function Layout() {
                   whoPages.map((item) => (
                     <TouchableOpacity
                       key={item.name}
-                      style={dropdownStyles.dropdownItem}
+                      style={styles.dropdownItem}
                       onPress={() => {
                         setActiveDropdown(null);
                         router.push(item.route);
                       }}
                     >
-                      <Text style={dropdownStyles.dropdownText}>{item.name}</Text>
+                      <Text style={styles.dropdownText}>{item.name}</Text>
                     </TouchableOpacity>
                   ))}
 
@@ -156,13 +145,13 @@ export default function Layout() {
                   projects.map((item) => (
                     <TouchableOpacity
                       key={item.name}
-                      style={dropdownStyles.dropdownItem}
+                      style={styles.dropdownItem}
                       onPress={() => {
                         setActiveDropdown(null);
                         router.push(item.route);
                       }}
                     >
-                      <Text style={dropdownStyles.dropdownText}>{item.name}</Text>
+                      <Text style={styles.dropdownText}>{item.name}</Text>
                     </TouchableOpacity>
                   ))}
               </ScrollView>
@@ -184,33 +173,3 @@ export default function Layout() {
     </View>
   );
 }
-
-const dropdownStyles = StyleSheet.create({
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 101,
-  },
-  dropdownMenu: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
-  dropdownItem: {
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  dropdownText: {
-    color: '#222',
-    fontWeight: '500',
-  },
-});
