@@ -32,8 +32,9 @@ export default function Layout() {
 
   // ---------------- Load Fonts ----------------
   const [fontsLoaded] = useFonts({
-    'AlteHaasGrotesk-Regular': require('../assets/fonts/AlteHaasGroteskRegular.ttf'),
-    'AlteHaasGrotesk-Bold': require('../assets/fonts/AlteHaasGroteskBold.ttf'),
+    'Exo2-Regular': require('../assets/fonts/Exo2-Regular.otf'),
+    'Exo2-Bold': require('../assets/fonts/Exo2-Bold.otf'),
+    'Exo2-Black': require('../assets/fonts/Exo2-Black.otf'),
   });
 
   useEffect(() => {

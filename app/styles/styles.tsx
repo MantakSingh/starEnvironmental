@@ -4,6 +4,11 @@ import { StyleSheet } from 'react-native';
 const COLOR_1 = '#002f78';
 const COLOR_2 = '#fefefd';
 
+// ----- Generic Font Variables -----
+const FONT_HEADER = 'Exo2-Black';
+const FONT_BODY = 'Exo2-Regular';
+const FONT_BUTTON = 'Exo2-Bold';
+
 export const styles = StyleSheet.create({
   // ---------- Container & General ----------
   container: {
@@ -19,12 +24,12 @@ export const styles = StyleSheet.create({
   },
   heroTitle: {
     fontSize: 28,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_HEADER,
     color: COLOR_2,
   },
   heroSubtitle: {
     fontSize: 16,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BODY,
     color: COLOR_2,
     marginTop: 10,
   },
@@ -55,7 +60,7 @@ export const styles = StyleSheet.create({
   heroBannerTitle: {
     color: '#fff',
     fontSize: 34,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_HEADER,
     textAlign: 'center',
     letterSpacing: 1,
   },
@@ -67,19 +72,19 @@ export const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 22,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_HEADER,
     marginBottom: 12,
     color: COLOR_1,
   },
   sectionSubtitle: {
     fontSize: 18,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BUTTON,
     marginBottom: 8,
     color: COLOR_1,
   },
   sectionText: {
     fontSize: 16,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BODY,
     lineHeight: 22,
     color: COLOR_1,
   },
@@ -97,19 +102,19 @@ export const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BUTTON,
     marginBottom: 6,
     color: COLOR_1,
   },
   cardText: {
     fontSize: 14,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BODY,
     lineHeight: 20,
     color: COLOR_1,
   },
   cardAuthor: {
     fontSize: 14,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BODY,
     fontStyle: 'italic',
     marginTop: 6,
     color: COLOR_1,
@@ -123,7 +128,7 @@ export const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 15,
     fontSize: 16,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BODY,
     color: COLOR_1,
     backgroundColor: '#ffffff',
   },
@@ -138,7 +143,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: COLOR_2,
     fontSize: 16,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BUTTON,
   },
 
   // ---------- Task Bar ----------
@@ -163,7 +168,7 @@ export const styles = StyleSheet.create({
   taskButtonText: {
     color: COLOR_2,
     fontSize: 20,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BUTTON,
   },
 
   // ---------- Footer ----------
@@ -176,7 +181,7 @@ export const styles = StyleSheet.create({
   footerText: {
     marginBottom: 12,
     fontSize: 14,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BODY,
     color: COLOR_2,
   },
 
@@ -207,6 +212,6 @@ export const styles = StyleSheet.create({
   dropdownText: {
     color: '#222',
     fontSize: 15,
-    fontFamily: 'Helvetica-Black',
+    fontFamily: FONT_BODY,
   },
 });
