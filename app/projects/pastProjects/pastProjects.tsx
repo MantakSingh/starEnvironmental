@@ -8,37 +8,30 @@ type Project = {
   title: string;
   image: number;
   route: string;
-  status: 'current' | 'past';
 };
 
 // ---------------- Project Data ----------------
-const projects: Project[] = [
+const pastProjects: Project[] = [
   {
     title: 'Federal Way AM/PM',
     image: require('../../../assets/images/projects/FederalWayArco.jpg'),
     route: './federalWay',
-    status: 'past',
   },
   {
     title: 'Watsonville AM/PM',
     image: require('../../../assets/images/projects/WatsonvilleArco.jpg'),
     route: './watsonville',
-    status: 'past',
   },
   {
     title: 'Fresno AM/PM',
     image: require('../../../assets/images/projects/FresnoArco.jpg'),
     route: './fresno',
-    status: 'past',
   },
 ];
 
 // ---------------- Component ----------------
 export default function Projects() {
   const router = useRouter();
-
-  const currentProjects = projects.filter(p => p.status === 'current');
-  const pastProjects = projects.filter(p => p.status === 'past');
 
   const renderProjectGrid = (projectArray: Project[]) => (
     <View style={styles.projectGrid}>
