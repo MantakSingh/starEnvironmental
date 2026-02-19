@@ -4,35 +4,64 @@ import { styles as globalStyles } from '../styles/styles';
 
 type TeamMember = {
   name: string;
-  image: any; // require('../assets/images/member.jpg')
+  title: string;
+  image: any;
 };
 
 const teamMembers: TeamMember[] = [
-    { name: 'Ken Singh', image: require('../../assets/images/TeamPlaceholderImage.jpg') },
-    { name: 'Arshdeep', image: require('../../assets/images/TeamPlaceholderImage.jpg') },
-    { name: 'Japnoor Grewal', image: require('../../assets/images/JapnoorPortraitCropped3.jpg') },
-    { name: 'Mantak Singh', image: require('../../assets/images/TeamPlaceholderImage.jpg') },
+  {
+    name: 'Ken Singh',
+    title: 'President',
+    image: require('../../assets/images/TeamPlaceholderImage.jpg'),
+  },
+  {
+    name: 'Arshdeep Bhandal',
+    title: 'Operations Manager',
+    image: require('../../assets/images/TeamPlaceholderImage.jpg'),
+  },
+  {
+    name: 'Japnoor Grewal',
+    title: 'Project Coordinator',
+    image: require('../../assets/images/JapnoorPortraitCropped3.jpg'),
+  },
+  {
+    name: 'Mantak Singh',
+    title: 'Development & Strategy',
+    image: require('../../assets/images/TeamPlaceholderImage.jpg'),
+  },
 ];
 
 export default function OurTeam() {
-    return (
-        <ScrollView contentContainerStyle={{ padding: 16 }}>
-            <Text style={[globalStyles.sectionTitle]} accessibilityRole="header">
-                Our Team
-            </Text>
-            <View style={globalStyles.teamGrid}>
-                {teamMembers.map((member) => (
-                    <View key={member.name} style={globalStyles.teamCard}>
-                        <View style={globalStyles.teamImageContainer}>
-                            <Image
-                                source={member.image}
-                                style={globalStyles.teamImage}
-                            />
-                            <Text style={globalStyles.teamNameOverlay}>{member.name}</Text>
-                        </View>
-                    </View>
-                ))}
+  return (
+    <ScrollView contentContainerStyle={{ padding: 20 }}>
+      <Text
+        style={globalStyles.sectionTitle}
+        accessibilityRole="header"
+      >
+        Our Team
+      </Text>
+
+      <View style={globalStyles.teamGrid}>
+        {teamMembers.map((member) => (
+          <View key={member.name} style={globalStyles.teamCard}>
+            <View style={globalStyles.teamImageContainer}>
+              <Image
+                source={member.image}
+                style={globalStyles.teamImage}
+              />
             </View>
-        </ScrollView>
-    );
+
+            <View style={globalStyles.teamInfoContainer}>
+              <Text style={globalStyles.teamName}>
+                {member.name}
+              </Text>
+              <Text style={globalStyles.teamTitle}>
+                {member.title}
+              </Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
+  );
 }

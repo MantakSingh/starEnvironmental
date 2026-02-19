@@ -214,45 +214,60 @@ export const styles = StyleSheet.create({
     fontFamily: FONT_BUTTON,
     textAlign: 'center',
   },
-// ---------- Team Cards ----------
-  teamGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginHorizontal: -6,
-  },
-  teamCard: {
-    width: '22%', // smaller than before (about 4 per row on large screens)
-    aspectRatio: 1,
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
-    marginBottom: 16,
-    overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  teamImageContainer: {
-    flex: 1,
-    position: 'relative',
-  },
-  teamImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  teamNameOverlay: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    paddingVertical: 6,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    textAlign: 'center',
-    fontSize: 14, // slightly smaller text
-    fontWeight: '700',
-    color: '#002f78',
-  },
+/// ---------- Team Grid ----------
+teamGrid: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  marginHorizontal: -6,
+},
+
+teamCard: {
+  width: '22%',              // ~4 per row on large screens
+  backgroundColor: '#ffffff',
+  borderRadius: 12,
+  marginBottom: 20,
+  overflow: 'hidden',
+  shadowColor: '#000',
+  shadowOpacity: 0.08,
+  shadowRadius: 8,
+  elevation: 3,
+},
+
+teamImageContainer: {
+  width: '100%',
+  aspectRatio: 1,            // keeps image square
+},
+
+teamImage: {
+  width: '100%',
+  height: '100%',
+  resizeMode: 'cover',
+},
+
+// Info section below image
+teamInfoContainer: {
+  paddingVertical: 12,
+  paddingHorizontal: 10,
+  alignItems: 'center',
+  backgroundColor: '#ffffff',
+},
+
+teamName: {
+  fontSize: 16,
+  fontFamily: 'Helvetica',
+  fontWeight: '700',
+  color: '#002f78',
+  textAlign: 'center',
+},
+
+teamTitle: {
+  fontSize: 14,
+  fontFamily: 'Helvetica',
+  color: '#555',
+  marginTop: 4,
+  textAlign: 'center',
+},
   // ---------- Projects Grid ----------
   projectGrid: {
     flexDirection: 'row',
