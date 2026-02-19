@@ -10,7 +10,6 @@ import {
 import { styles } from "./styles/styles";
 
 export default function Contact() {
-  // ---------- Form State ----------
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -23,7 +22,6 @@ export default function Contact() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  // ---------- Handlers ----------
   const handleChange = (key: string, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
@@ -42,7 +40,8 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const notificationRequest = fetch(
+      // 🔹 Send company notification
+      const notifyResponse = await fetch(
         "https://api.emailjs.com/api/v1.0/email/send",
         {
           method: "POST",
@@ -51,12 +50,24 @@ export default function Contact() {
             service_id: "service_uw0m5w9",
             template_id: "template_b8j3ea9",
             user_id: "h9m0pVvbpjauIn6Te",
-            template_params: { name, email, phone, subject, message },
+            template_params: {
+              name,
+              email,
+              phone,
+              subject,
+              message,
+            },
           }),
         }
       );
 
-      const confirmationRequest = fetch(
+      if (!notifyResponse.ok) {
+        const errorText = await notifyResponse.text();
+        throw new Error(`Company email failed: ${errorText}`);
+      }
+
+      // 🔹 Send customer confirmation
+      const confirmResponse = await fetch(
         "https://api.emailjs.com/api/v1.0/email/send",
         {
           method: "POST",
@@ -65,25 +76,21 @@ export default function Contact() {
             service_id: "service_uw0m5w9",
             template_id: "template_2yt5pyr",
             user_id: "h9m0pVvbpjauIn6Te",
-            template_params: { name, subject },
-            reply_to: email,
+            template_params: {
+              name,
+              email, // IMPORTANT: must match {{email}} in template
+              subject,
+            },
           }),
         }
       );
 
-      const [notifyResponse, confirmResponse] = await Promise.all([
-        notificationRequest,
-        confirmationRequest,
-      ]);
-
-      if (notifyResponse.status !== 200) {
-        throw new Error("Failed to send notification email.");
+      if (!confirmResponse.ok) {
+        const errorText = await confirmResponse.text();
+        throw new Error(`Confirmation email failed: ${errorText}`);
       }
 
-      if (confirmResponse.status !== 200) {
-        throw new Error("Failed to send confirmation email.");
-      }
-
+      // 🔹 Success
       setSuccess(`Thank you, ${name}. We'll get back to you soon.`);
       setForm({
         name: "",
@@ -93,13 +100,13 @@ export default function Contact() {
         message: "",
       });
     } catch (err: any) {
-      setError(err.message || "Network error. Please try again.");
+      console.error(err);
+      setError(err.message || "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  // ---------- Fields Config ----------
   const fields: {
     key: keyof typeof form;
     label: string;
@@ -121,7 +128,7 @@ export default function Contact() {
         touch with our team today.
       </Text>
 
-      {/* Contact Info Card */}
+      {/* Contact Info */}
       <View style={styles.card}>
         <View style={styles.contactRow}>
           <Ionicons name="call-outline" size={18} color="#002f78" />
@@ -136,13 +143,13 @@ export default function Contact() {
         </View>
       </View>
 
-      {/* Contact Form */}
+      {/* Form */}
       <View style={[styles.card, { marginTop: 20 }]}>
         {fields.map(({ key, label, keyboard, multiline }) => (
           <TextInput
             key={key}
             style={[
-              styles.contactFormInput,
+              styles.formInput,
               multiline ? { height: 120, textAlignVertical: "top" } : {},
             ]}
             placeholder={label}
