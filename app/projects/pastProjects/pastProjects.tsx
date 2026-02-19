@@ -16,19 +16,19 @@ const projects: Project[] = [
   {
     title: 'Federal Way AM/PM',
     image: require('../../../assets/images/projects/FederalWayArco.jpg'),
-    route: './projects/pastProjects/federalWay',
+    route: './federalWay',
     status: 'past',
   },
   {
     title: 'Watsonville AM/PM',
     image: require('../../../assets/images/projects/WatsonvilleArco.jpg'),
-    route: './projects/pastProjects/watsonville',
+    route: './watsonville',
     status: 'past',
   },
   {
     title: 'Fresno AM/PM',
     image: require('../../../assets/images/projects/FresnoArco.jpg'),
-    route: './projects/pastProjects/fresno',
+    route: './fresno',
     status: 'past',
   },
 ];
