@@ -17,20 +17,24 @@ SplashScreen.preventAutoHideAsync();
 
 type Page = { name: string; route: string };
 
-// ---------------- Projects Dropdown Options ----------------
-const projects = [
-  { name: 'Current Projects', route: '/projects/currentProjects/lakewood' },
-  { name: 'Past Projects', route: '/projects/pastProjects/pastProjects' },
-];
+const DROPDROPDOWN_DATA: Record<string, Page[]> = {
+  who: [
+    { name: 'About Us', route: '/WhoWeAre/AboutUs' },
+    { name: 'Our Team', route: '/WhoWeAre/OurTeam' },
+  ],
+  projects: [
+    { name: 'Current Projects', route: '/projects/currentProjects/lakewood' },
+    { name: 'Past Projects', route: '/projects/pastProjects/pastProjects' },
+  ],
+};
+
+const TASKBAR_HEIGHT = 70;
+const DROPDOWN_HEIGHT = 180;
 
 export default function Layout() {
   const router = useRouter();
-  const TASKBAR_HEIGHT = 70;
-  const DROPDOWN_HEIGHT = 180;
-
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  // ---------------- Load Fonts ----------------
   const [fontsLoaded] = useFonts({
     'Exo2-Regular': require('../assets/fonts/Exo2-Regular.otf'),
     'Exo2-Bold': require('../assets/fonts/Exo2-Bold.otf'),
@@ -38,20 +42,67 @@ export default function Layout() {
   });
 
   useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
+    if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  if (!fontsLoaded) return null;
 
-  // ---------------- Dropdown Pages ----------------
-  const whoPages: Page[] = [
-    { name: 'About Us', route: '/WhoWeAre/AboutUs' },
-    { name: 'Our Team', route: '/WhoWeAre/OurTeam' },
-  ];
+  const TaskButton = ({
+    label,
+    dropdownKey,
+    route,
+  }: {
+    label: string;
+    dropdownKey?: string;
+    route?: string;
+  }) => (
+    <TouchableOpacity
+      style={styles.taskButton}
+      onPress={() =>
+        dropdownKey
+          ? setActiveDropdown(activeDropdown === dropdownKey ? null : dropdownKey)
+          : route
+          ? router.push(route)
+          : null
+      }
+    >
+      <Text style={styles.taskButtonText}>
+        {label} {dropdownKey ? (activeDropdown === dropdownKey ? '▲' : '▼') : ''}
+      </Text>
+    </TouchableOpacity>
+  );
+
+  const DropdownMenu = () => {
+    if (!activeDropdown) return null;
+
+    return (
+      <TouchableWithoutFeedback onPress={() => setActiveDropdown(null)}>
+        <View style={styles.dropdownOverlay}>
+          <View
+            style={[
+              styles.dropdownMenu,
+              { top: TASKBAR_HEIGHT, height: DROPDOWN_HEIGHT },
+            ]}
+          >
+            <ScrollView>
+              {DROPDROPDOWN_DATA[activeDropdown].map((item) => (
+                <TouchableOpacity
+                  key={item.name}
+                  style={styles.dropdownItem}
+                  onPress={() => {
+                    setActiveDropdown(null);
+                    router.push(item.route);
+                  }}
+                >
+                  <Text style={styles.dropdownText}>{item.name}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -59,14 +110,7 @@ export default function Layout() {
       <View
         style={[
           styles.taskBar,
-          {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: TASKBAR_HEIGHT,
-            zIndex: 100,
-          },
+          { position: 'absolute', top: 0, left: 0, right: 0, height: TASKBAR_HEIGHT, zIndex: 100 },
         ]}
       >
         {/* Logo */}
@@ -79,96 +123,18 @@ export default function Layout() {
 
         {/* Navigation */}
         <View style={styles.pagesContainer}>
-          <TouchableOpacity
-            style={styles.taskButton}
-            onPress={() => router.push('/')}
-          >
-            <Text style={styles.taskButtonText}>Home</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.taskButton}
-            onPress={() =>
-              setActiveDropdown(activeDropdown === 'who' ? null : 'who')
-            }
-          >
-            <Text style={styles.taskButtonText}>
-              Who We Are {activeDropdown === 'who' ? '▲' : '▼'}
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.taskButton}
-            onPress={() => router.push('/WhatWeDo')}
-          >
-            <Text style={styles.taskButtonText}>What We Do</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.taskButton}
-            onPress={() =>
-              setActiveDropdown(activeDropdown === 'projects' ? null : 'projects')
-            }
-          >
-            <Text style={styles.taskButtonText}>
-              Projects {activeDropdown === 'projects' ? '▲' : '▼'}
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.taskButton}
-            onPress={() => router.push('/contact')}
-          >
-            <Text style={styles.taskButtonText}>Contact</Text>
-          </TouchableOpacity>
+          <TaskButton label="Home" route="/" />
+          <TaskButton label="Who We Are" dropdownKey="who" />
+          <TaskButton label="What We Do" route="/WhatWeDo" />
+          <TaskButton label="Projects" dropdownKey="projects" />
+          <TaskButton label="Contact" route="/contact" />
         </View>
       </View>
 
-      {/* ---------------- Dropdown Menu ---------------- */}
-      {activeDropdown && (
-        <TouchableWithoutFeedback onPress={() => setActiveDropdown(null)}>
-          <View style={styles.dropdownOverlay}>
-            <View
-              style={[
-                styles.dropdownMenu,
-                { top: TASKBAR_HEIGHT, height: DROPDOWN_HEIGHT },
-              ]}
-            >
-              <ScrollView>
-                {activeDropdown === 'who' &&
-                  whoPages.map((item) => (
-                    <TouchableOpacity
-                      key={item.name}
-                      style={styles.dropdownItem}
-                      onPress={() => {
-                        setActiveDropdown(null);
-                        router.push(item.route);
-                      }}
-                    >
-                      <Text style={styles.dropdownText}>{item.name}</Text>
-                    </TouchableOpacity>
-                  ))}
+      {/* Dropdown */}
+      <DropdownMenu />
 
-                {activeDropdown === 'projects' &&
-                  projects.map((item) => (
-                    <TouchableOpacity
-                      key={item.name}
-                      style={styles.dropdownItem}
-                      onPress={() => {
-                        setActiveDropdown(null);
-                        router.push(item.route);
-                      }}
-                    >
-                      <Text style={styles.dropdownText}>{item.name}</Text>
-                    </TouchableOpacity>
-                  ))}
-              </ScrollView>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      )}
-
-      {/* ---------------- Main Content Area ---------------- */}
+      {/* Main Content */}
       <View style={{ flex: 1, marginTop: TASKBAR_HEIGHT }}>
         <ScrollView
           style={{ flex: 1 }}
