@@ -2,7 +2,6 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -19,7 +18,10 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   // ---------- Handlers ----------
   const handleChange = (key: string, value: string) => {
@@ -29,15 +31,17 @@ export default function Contact() {
   const handleSubmit = async () => {
     const { name, email, phone, subject, message } = form;
 
+    setError(null);
+    setSuccess(null);
+
     if (!name || !email || !phone || !subject || !message) {
-      Alert.alert("Please fill out all fields");
+      setError("Please fill out all fields.");
       return;
     }
 
     setLoading(true);
 
     try {
-      // ---- Prepare both requests ----
       const notificationRequest = fetch(
         "https://api.emailjs.com/api/v1.0/email/send",
         {
@@ -45,7 +49,7 @@ export default function Contact() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             service_id: "service_uw0m5w9",
-            template_id: "template_b8j3ea9", // Company notification template
+            template_id: "template_b8j3ea9",
             user_id: "h9m0pVvbpjauIn6Te",
             template_params: { name, email, phone, subject, message },
           }),
@@ -59,45 +63,43 @@ export default function Contact() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             service_id: "service_uw0m5w9",
-            template_id: "template_2yt5pyr", // Customer confirmation template
+            template_id: "template_2yt5pyr",
             user_id: "h9m0pVvbpjauIn6Te",
             template_params: { name, subject },
-            reply_to: email, // send to customer
+            reply_to: email,
           }),
         }
       );
 
-      // ---- Run both requests in parallel ----
       const [notifyResponse, confirmResponse] = await Promise.all([
         notificationRequest,
         confirmationRequest,
       ]);
 
       if (notifyResponse.status !== 200) {
-        throw new Error("Failed to send notification email to company.");
+        throw new Error("Failed to send notification email.");
       }
+
       if (confirmResponse.status !== 200) {
-        throw new Error("Failed to send confirmation email to customer.");
+        throw new Error("Failed to send confirmation email.");
       }
 
-      // ---- Success ----
-      Alert.alert(
-        "Message Sent!",
-        `Thank you, ${name}. We'll get back to you soon.`
-      );
-
-      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
-    } catch (error: any) {
-      console.error(error);
-      Alert.alert("Error", error.message || "Network error. Please try again.");
+      setSuccess(`Thank you, ${name}. We'll get back to you soon.`);
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err: any) {
+      setError(err.message || "Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  // ---------- Render UI ----------
-  const { name, email, phone, subject, message } = form;
-
+  // ---------- Fields Config ----------
   const fields: {
     key: keyof typeof form;
     label: string;
@@ -113,7 +115,6 @@ export default function Contact() {
 
   return (
     <View style={styles.section}>
-      {/* Section Title & Description */}
       <Text style={styles.sectionTitle}>Contact Us</Text>
       <Text style={[styles.sectionText, { marginBottom: 25 }]}>
         Have a project in mind? Are you in need of a sub-contractor? Get in
@@ -122,15 +123,14 @@ export default function Contact() {
 
       {/* Contact Info Card */}
       <View style={styles.card}>
-        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
+        <View style={styles.contactRow}>
           <Ionicons name="call-outline" size={18} color="#002f78" />
-          <Text style={[styles.cardText, { marginLeft: 8 }]}>
-            (253) 344-9113
-          </Text>
+          <Text style={styles.cardText}>(253) 344-9113</Text>
         </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+
+        <View style={styles.contactRow}>
           <Ionicons name="mail-outline" size={18} color="#002f78" />
-          <Text style={[styles.cardText, { marginLeft: 8 }]}>
+          <Text style={styles.cardText}>
             contact@StarEnvironmentalConstruction.com
           </Text>
         </View>
@@ -141,7 +141,10 @@ export default function Contact() {
         {fields.map(({ key, label, keyboard, multiline }) => (
           <TextInput
             key={key}
-            style={[styles.formInput, multiline ? { height: 120 } : {}]}
+            style={[
+              styles.contactFormInput,
+              multiline ? { height: 120, textAlignVertical: "top" } : {},
+            ]}
             placeholder={label}
             placeholderTextColor="#888"
             value={form[key]}
@@ -152,8 +155,11 @@ export default function Contact() {
           />
         ))}
 
+        {error && <Text style={styles.errorText}>{error}</Text>}
+        {success && <Text style={styles.successText}>{success}</Text>}
+
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, loading && { opacity: 0.7 }]}
           onPress={handleSubmit}
           disabled={loading}
         >

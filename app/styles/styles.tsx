@@ -307,4 +307,33 @@ teamTitle: {
     fontWeight: '700',
     color: '#002f78',
   },
+  contactRow: {
+  flexDirection: "row",
+  alignItems: "center",
+  marginBottom: 10,
+  gap: 8,
+},
+  // ---------- Contact Form ----------
+contactFormInput: {
+  borderWidth: 1,
+  borderColor: "#ddd",
+  borderRadius: 8,
+  padding: 12,
+  marginBottom: 15,
+  fontFamily: "Exo2-Regular",
+  fontSize: 14,
+  backgroundColor: "#fff",
+},
+
+errorText: {
+  color: "#d32f2f",
+  fontFamily: "Exo2-Bold",
+  marginBottom: 12,
+},
+
+successText: {
+  color: "#2e7d32",
+  fontFamily: "Exo2-Bold",
+  marginBottom: 12,
+},
 });
