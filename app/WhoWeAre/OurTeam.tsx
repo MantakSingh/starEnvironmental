@@ -17,7 +17,7 @@ const teamMembers: TeamMember[] = [
   {
     name: 'Arshdeep Bhandal',
     title: 'Operations Manager',
-    image: require('../../assets/images/TeamPlaceholderImage.jpg'),
+    image: require('../../assets/images/ArshdeepPortrait.jpg'),
   },
   {
     name: 'Japnoor Grewal',
