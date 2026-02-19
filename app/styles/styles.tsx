@@ -195,8 +195,6 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: '#ffffff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -205,15 +203,15 @@ export const styles = StyleSheet.create({
   },
   dropdownItem: {
     paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    paddingHorizontal: 40,
   },
   dropdownText: {
     color: COLOR_1,
     fontSize: 15,
     fontFamily: FONT_BUTTON,
-  },// ---------- Team Cards ----------
+    textAlign: 'right',
+  },
+// ---------- Team Cards ----------
   teamGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
