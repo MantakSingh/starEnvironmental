@@ -203,13 +203,12 @@ export const styles = StyleSheet.create({
   },
   dropdownItem: {
     paddingVertical: 12,
-    paddingHorizontal: 40,
   },
   dropdownText: {
     color: COLOR_1,
     fontSize: 15,
     fontFamily: FONT_BUTTON,
-    textAlign: 'right',
+    textAlign: 'center',
   },
 // ---------- Team Cards ----------
   teamGrid: {

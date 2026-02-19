@@ -7,7 +7,6 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import Footer from './footer';
@@ -17,7 +16,7 @@ SplashScreen.preventAutoHideAsync();
 
 type Page = { name: string; route: string };
 
-const DROPDROPDOWN_DATA: Record<string, Page[]> = {
+const DROPDOWN_DATA: Record<string, Page[]> = {
   who: [
     { name: 'About Us', route: '/WhoWeAre/AboutUs' },
     { name: 'Our Team', route: '/WhoWeAre/OurTeam' },
@@ -29,7 +28,6 @@ const DROPDROPDOWN_DATA: Record<string, Page[]> = {
 };
 
 const TASKBAR_HEIGHT = 70;
-const DROPDOWN_HEIGHT = 180;
 
 export default function Layout() {
   const router = useRouter();
@@ -55,37 +53,42 @@ export default function Layout() {
     label: string;
     dropdownKey?: string;
     route?: string;
-  }) => (
-    <TouchableOpacity
-      style={styles.taskButton}
-      onPress={() =>
-        dropdownKey
-          ? setActiveDropdown(activeDropdown === dropdownKey ? null : dropdownKey)
-          : route
-          ? router.push(route)
-          : null
-      }
-    >
-      <Text style={styles.taskButtonText}>
-        {label} {dropdownKey ? (activeDropdown === dropdownKey ? '▲' : '▼') : ''}
-      </Text>
-    </TouchableOpacity>
-  );
-
-  const DropdownMenu = () => {
-    if (!activeDropdown) return null;
+  }) => {
+    const isActive = activeDropdown === dropdownKey;
 
     return (
-      <TouchableWithoutFeedback onPress={() => setActiveDropdown(null)}>
-        <View style={styles.dropdownOverlay}>
+      <View style={{ position: 'relative' }}>
+        <TouchableOpacity
+          style={styles.taskButton}
+          onPress={() =>
+            dropdownKey
+              ? setActiveDropdown(isActive ? null : dropdownKey)
+              : route
+              ? router.push(route)
+              : null
+          }
+        >
+          <Text style={styles.taskButtonText}>
+            {label} {dropdownKey ? (isActive ? '▲' : '▼') : ''}
+          </Text>
+        </TouchableOpacity>
+
+        {/* Mini Dropdown */}
+        {dropdownKey && isActive && (
           <View
             style={[
               styles.dropdownMenu,
-              { top: TASKBAR_HEIGHT, height: DROPDOWN_HEIGHT },
+              {
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                minWidth: '100%',
+                zIndex: 200,
+              },
             ]}
           >
             <ScrollView>
-              {DROPDROPDOWN_DATA[activeDropdown].map((item) => (
+              {DROPDOWN_DATA[dropdownKey].map((item) => (
                 <TouchableOpacity
                   key={item.name}
                   style={styles.dropdownItem}
@@ -99,8 +102,8 @@ export default function Layout() {
               ))}
             </ScrollView>
           </View>
-        </View>
-      </TouchableWithoutFeedback>
+        )}
+      </View>
     );
   };
 
@@ -110,14 +113,31 @@ export default function Layout() {
       <View
         style={[
           styles.taskBar,
-          { position: 'absolute', top: 0, left: 0, right: 0, height: TASKBAR_HEIGHT, zIndex: 100 },
+          {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: TASKBAR_HEIGHT,
+            zIndex: 100,
+          },
         ]}
       >
         {/* Logo */}
-        <View style={{ width: 70, justifyContent: 'center', alignItems: 'center' }}>
+        <View
+          style={{
+            width: 70,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Image
             source={require('../assets/images/StarLogoTestWhite.png')}
-            style={{ height: 70, aspectRatio: 1, resizeMode: 'contain' }}
+            style={{
+              height: 70,
+              aspectRatio: 1,
+              resizeMode: 'contain',
+            }}
           />
         </View>
 
@@ -131,14 +151,15 @@ export default function Layout() {
         </View>
       </View>
 
-      {/* Dropdown */}
-      <DropdownMenu />
-
-      {/* Main Content */}
+      {/* ---------------- Main Content ---------------- */}
       <View style={{ flex: 1, marginTop: TASKBAR_HEIGHT }}>
         <ScrollView
           style={{ flex: 1 }}
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'space-between',
+          }}
+          onScrollBeginDrag={() => setActiveDropdown(null)} // auto close on scroll
         >
           <Slot />
           <Footer />
