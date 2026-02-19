@@ -12,7 +12,7 @@ const teamMembers: TeamMember[] = [
   {
     name: 'Ken Singh',
     title: 'President',
-    image: require('../../assets/images/TeamPlaceholderImage.jpg'),
+    image: require('../../assets/images/KenSinghPortraitCropped2.jpg'),
   },
   {
     name: 'Arshdeep Bhandal',
