@@ -184,7 +184,11 @@ export const styles = StyleSheet.create({
     fontFamily: FONT_BODY,
     color: COLOR_2,
   },
-
+  footerIcons: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    gap: 20, 
+  },
   // ---------- Dropdown ----------
   dropdownOverlay: {
     ...StyleSheet.absoluteFillObject,

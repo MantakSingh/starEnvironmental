@@ -10,7 +10,7 @@ type TeamMember = {
 const teamMembers: TeamMember[] = [
     { name: 'Ken Singh', image: require('../../assets/images/TeamPlaceholderImage.jpg') },
     { name: 'Arshdeep', image: require('../../assets/images/TeamPlaceholderImage.jpg') },
-    { name: 'Japnoor Grewal', image: require('../../assets/images/TeamPlaceholderImage.jpg') },
+    { name: 'Japnoor Grewal', image: require('../../assets/images/JapnoorPortraitCropped3.jpg') },
     { name: 'Mantak Singh', image: require('../../assets/images/TeamPlaceholderImage.jpg') },
 ];
 
