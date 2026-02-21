@@ -73,7 +73,8 @@ export default function Index() {
       <View style={globalStyles.section}>
         <Text style={globalStyles.sectionTitle}>Ready to Build Your Next Project?</Text>
         <Text style={[globalStyles.sectionText, { marginTop: 8, marginBottom: 12 }]}>
-          Whether it's a commercial or residential project, we deliver quality and reliability from start to finish. Contact us today to discuss your next build.
+          Whether it's a commercial or residential project, we deliver quality and reliability from start to finish. 
+          Contact us today to discuss your next build!
         </Text>
       </View>
     </ScrollView>
