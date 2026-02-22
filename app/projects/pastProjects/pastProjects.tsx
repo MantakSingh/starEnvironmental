@@ -66,9 +66,6 @@ export default function Projects() {
       {pastProjects.length > 0 && (
         <>
           <Text style={[styles.sectionTitle, { marginTop: 40 }]}>Past Projects</Text>
-          <Text style={[styles.sectionText, { marginBottom: 20 }]}>
-            Completed projects
-          </Text>
           {renderProjectGrid(pastProjects)}
         </>
       )}
