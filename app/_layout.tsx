@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from 'expo-font';
 import { Slot, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -65,7 +66,7 @@ export default function Layout() {
       if (dropdownKey) {
         setActiveDropdown(isActive ? null : dropdownKey);
       } else if (route) {
-        setMobileMenuOpen(false); // Close mobile menu automatically
+        setMobileMenuOpen(false);
         router.push(route);
       }
     };
@@ -129,7 +130,7 @@ export default function Layout() {
           },
         ]}
       >
-        {/* Logo as a button */}
+        {/* Logo */}
         <TouchableOpacity
           onPress={() => {
             setMobileMenuOpen(false);
@@ -162,13 +163,17 @@ export default function Layout() {
           </View>
         )}
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Menu Icon */}
         {isMobile && (
           <TouchableOpacity
             onPress={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{ paddingRight: 20 }}
           >
-            <Text style={{ color: 'white', fontSize: 28 }}>☰</Text>
+            <Ionicons
+              name={mobileMenuOpen ? "close" : "menu"}
+              size={32}
+              color="white"
+            />
           </TouchableOpacity>
         )}
       </View>
@@ -198,6 +203,7 @@ export default function Layout() {
           ].map((item) => (
             <TouchableOpacity
               key={item.label}
+              style={styles.dropdownItem}
               onPress={() => {
                 setMobileMenuOpen(false);
                 router.push(item.route);
