@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   // ---------- Hero Banner ----------
   heroBannerContainer: {
     width: '100%',
-    aspectRatio: 16 / 9,
+    height: SCREEN_WIDTH < 900 ? SCREEN_WIDTH * 0.5625 : 420, // 16:9 on mobile, 420px on desktop
     overflow: 'hidden',
     position: 'relative',
   },
