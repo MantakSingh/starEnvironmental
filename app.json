@@ -24,7 +24,9 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/Blue_Star_symbol.png"
+      "favicon": "./assets/images/Blue_Star_symbol.png",
+      "publicPath": "/starenvironmental/",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router",
