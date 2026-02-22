@@ -61,18 +61,18 @@ export default function Layout() {
   }) => {
     const isActive = activeDropdown === dropdownKey;
 
+    const handlePress = () => {
+      if (dropdownKey) {
+        setActiveDropdown(isActive ? null : dropdownKey);
+      } else if (route) {
+        setMobileMenuOpen(false); // Close mobile menu automatically
+        router.push(route);
+      }
+    };
+
     return (
       <View style={{ position: 'relative' }}>
-        <TouchableOpacity
-          style={styles.taskButton}
-          onPress={() =>
-            dropdownKey
-              ? setActiveDropdown(isActive ? null : dropdownKey)
-              : route
-              ? router.push(route)
-              : null
-          }
-        >
+        <TouchableOpacity style={styles.taskButton} onPress={handlePress}>
           <Text style={styles.taskButtonText}>
             {label} {dropdownKey ? (isActive ? '▲' : '▼') : ''}
           </Text>
@@ -129,8 +129,12 @@ export default function Layout() {
           },
         ]}
       >
-        {/* Logo */}
-        <View
+        {/* Logo as a button */}
+        <TouchableOpacity
+          onPress={() => {
+            setMobileMenuOpen(false);
+            router.push('/');
+          }}
           style={{
             width: 70,
             justifyContent: 'center',
@@ -145,9 +149,9 @@ export default function Layout() {
               resizeMode: 'contain',
             }}
           />
-        </View>
+        </TouchableOpacity>
 
-        {/* Desktop Navigation (UNCHANGED) */}
+        {/* Desktop Navigation */}
         {!isMobile && (
           <View style={styles.pagesContainer}>
             <TaskButton label="Home" route="/" />
@@ -183,33 +187,25 @@ export default function Layout() {
             },
           ]}
         >
-          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/'); }}>
-            <Text style={styles.dropdownText}>Home</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/WhoWeAre/AboutUs'); }}>
-            <Text style={styles.dropdownText}>About Us</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/WhoWeAre/OurTeam'); }}>
-            <Text style={styles.dropdownText}>Our Team</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/WhatWeDo'); }}>
-            <Text style={styles.dropdownText}>What We Do</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/projects/currentProjects/lakewood'); }}>
-            <Text style={styles.dropdownText}>Current Projects</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/projects/pastProjects/pastProjects'); }}>
-            <Text style={styles.dropdownText}>Past Projects</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/contact'); }}>
-            <Text style={styles.dropdownText}>Contact</Text>
-          </TouchableOpacity>
+          {[
+            { label: 'Home', route: '/' },
+            { label: 'About Us', route: '/WhoWeAre/AboutUs' },
+            { label: 'Our Team', route: '/WhoWeAre/OurTeam' },
+            { label: 'What We Do', route: '/WhatWeDo' },
+            { label: 'Current Projects', route: '/projects/currentProjects/lakewood' },
+            { label: 'Past Projects', route: '/projects/pastProjects/pastProjects' },
+            { label: 'Contact', route: '/contact' },
+          ].map((item) => (
+            <TouchableOpacity
+              key={item.label}
+              onPress={() => {
+                setMobileMenuOpen(false);
+                router.push(item.route);
+              }}
+            >
+              <Text style={styles.dropdownText}>{item.label}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
       )}
 
