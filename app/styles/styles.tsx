@@ -170,15 +170,17 @@ export const styles = StyleSheet.create({
   taskBar: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between', // ensures logo left, menu right
     backgroundColor: COLOR_1,
-    paddingHorizontal: 12,
-    paddingLeft: 40,
+    paddingHorizontal: SCREEN_WIDTH > 768 ? 40 : 12, // more padding on web
+    paddingVertical: 10,
     zIndex: 10,
   },
   pagesContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: SCREEN_WIDTH > 768 ? 'space-around' : 'flex-end', // collapse to right on mobile
     flex: 1,
+    gap: SCREEN_WIDTH > 768 ? 0 : 12, // optional spacing between icons on mobile
   },
   taskButton: {
     paddingHorizontal: 16,
@@ -187,7 +189,7 @@ export const styles = StyleSheet.create({
   },
   taskButtonText: {
     color: COLOR_2,
-    fontSize: 20,
+    fontSize: SCREEN_WIDTH > 768 ? 20 : 16, // smaller text on mobile
     fontFamily: FONT_BUTTON,
   },
 
