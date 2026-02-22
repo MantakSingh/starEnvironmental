@@ -48,9 +48,12 @@ export default function Projects() {
               style={styles.projectImage}
               resizeMode="cover"
             />
-            <Text style={styles.projectTitleOverlay}>
-              {project.title}
-            </Text>
+            {/* Overlay container */}
+            <View style={styles.projectTitleOverlay}>
+              <Text style={styles.projectTitleText}>
+                {project.title}
+              </Text>
+            </View>
           </View>
         </TouchableOpacity>
       ))}

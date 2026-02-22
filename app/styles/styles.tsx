@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 // ----- Brand Colors -----
 const COLOR_1 = '#002f78';
@@ -9,6 +11,21 @@ const FONT_HEADER = 'Exo2-Black';
 const FONT_BODY = 'Exo2-Regular';
 const FONT_BUTTON = 'Exo2-Bold';
 
+// ---------- Responsive card widths ----------
+const CARD_MARGIN = 8;
+let teamCardsPerRow = 2;
+let projectCardsPerRow = 2;
+
+if (SCREEN_WIDTH >= 1200) {
+  teamCardsPerRow = 4;
+  projectCardsPerRow = 4;
+} else if (SCREEN_WIDTH >= 768) {
+  teamCardsPerRow = 3;
+  projectCardsPerRow = 3;
+}
+
+const teamCardWidth = (SCREEN_WIDTH - CARD_MARGIN * (teamCardsPerRow * 2)) / teamCardsPerRow;
+
 export const styles = StyleSheet.create({
   // ---------- Container & General ----------
   container: {
@@ -18,33 +35,35 @@ export const styles = StyleSheet.create({
 
   // ---------- Hero Section ----------
   hero: {
-    padding: 40,
+    paddingVertical: SCREEN_WIDTH > 768 ? 60 : 30,
+    paddingHorizontal: 20,
     backgroundColor: COLOR_1,
     alignItems: 'center',
   },
   heroTitle: {
-    fontSize: 28,
+    fontSize: SCREEN_WIDTH > 768 ? 40 : 28,
     fontFamily: FONT_HEADER,
     color: COLOR_2,
+    textAlign: 'center',
   },
   heroSubtitle: {
-    fontSize: 16,
+    fontSize: SCREEN_WIDTH > 768 ? 20 : 16,
     fontFamily: FONT_BODY,
     color: COLOR_2,
     marginTop: 10,
+    textAlign: 'center',
   },
 
   // ---------- Hero Banner ----------
   heroBannerContainer: {
-    height: 320,
     width: '100%',
+    aspectRatio: 16 / 9,
     overflow: 'hidden',
     position: 'relative',
   },
   heroBannerImage: {
     width: '100%',
-    height: 420,
-    marginTop: -100,
+    height: '100%',
     resizeMode: 'cover',
   },
   heroBannerOverlay: {
@@ -56,10 +75,11 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   heroBannerTitle: {
     color: '#fff',
-    fontSize: 34,
+    fontSize: SCREEN_WIDTH > 768 ? 52 : 34,
     fontFamily: FONT_HEADER,
     textAlign: 'center',
     letterSpacing: 1,
@@ -184,11 +204,12 @@ export const styles = StyleSheet.create({
     fontFamily: FONT_BODY,
     color: COLOR_2,
   },
-  footerIcons: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    gap: 20, 
+  footerIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
   },
+
   // ---------- Dropdown ----------
   dropdownOverlay: {
     ...StyleSheet.absoluteFillObject,
@@ -214,82 +235,79 @@ export const styles = StyleSheet.create({
     fontFamily: FONT_BUTTON,
     textAlign: 'center',
   },
-/// ---------- Team Grid ----------
-teamGrid: {
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  marginHorizontal: -6,
-},
 
-teamCard: {
-  width: '22%',              // ~4 per row on large screens
-  backgroundColor: '#ffffff',
-  borderRadius: 12,
-  marginBottom: 20,
-  overflow: 'hidden',
-  shadowColor: '#000',
-  shadowOpacity: 0.08,
-  shadowRadius: 8,
-  elevation: 3,
-},
+  // ---------- Team Grid ----------
+  teamGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginHorizontal: -CARD_MARGIN,
+  },
+  teamCard: {
+    width: teamCardWidth,
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    marginBottom: 20,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+    marginHorizontal: CARD_MARGIN,
+  },
+  teamImageContainer: {
+    width: '100%',
+    aspectRatio: 1,
+  },
+  teamImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  teamInfoContainer: {
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+  },
+  teamName: {
+    fontSize: SCREEN_WIDTH >= 768 ? 18 : 16,
+    fontFamily: FONT_BUTTON,  // updated to use your font variable
+    fontWeight: '700',
+    color: '#002f78',
+    textAlign: 'center',
+  },
+  teamTitle: {
+    fontSize: SCREEN_WIDTH >= 768 ? 16 : 14,
+    fontFamily: FONT_BODY,  // updated to use your font variable
+    color: '#555',
+    marginTop: 4,
+    textAlign: 'center',
+  },
 
-teamImageContainer: {
-  width: '100%',
-  aspectRatio: 1,            // keeps image square
-},
-
-teamImage: {
-  width: '100%',
-  height: '100%',
-  resizeMode: 'cover',
-},
-
-// Info section below image
-teamInfoContainer: {
-  paddingVertical: 12,
-  paddingHorizontal: 10,
-  alignItems: 'center',
-  backgroundColor: '#ffffff',
-},
-
-teamName: {
-  fontSize: 16,
-  fontFamily: 'Helvetica',
-  fontWeight: '700',
-  color: '#002f78',
-  textAlign: 'center',
-},
-
-teamTitle: {
-  fontSize: 14,
-  fontFamily: 'Helvetica',
-  color: '#555',
-  marginTop: 4,
-  textAlign: 'center',
-},
   // ---------- Projects Grid ----------
   projectGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginHorizontal: -6, // slightly smaller margin
+    marginHorizontal: -CARD_MARGIN,
   },
   projectCard: {
-    width: '30%', // smaller than before
-    aspectRatio: 1, // keeps square
+    width: teamCardWidth,
+    aspectRatio: 1,
     backgroundColor: '#ffffff',
-    borderRadius: 10,
-    marginBottom: 16,
+    borderRadius: 12,
+    marginBottom: 20,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 2,
+    shadowRadius: 8,
+    elevation: 3,
+    marginHorizontal: CARD_MARGIN,
   },
   projectImageContainer: {
     flex: 1,
-    position: 'relative', // needed for overlay
+    position: 'relative',
   },
   projectImage: {
     width: '100%',
@@ -302,38 +320,46 @@ teamTitle: {
     width: '100%',
     paddingVertical: 6,
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    textAlign: 'center',
-    fontSize: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  projectTitleText: {
+    fontSize: SCREEN_WIDTH >= 768 ? 18 : 16,
+    fontFamily: FONT_BUTTON,  // updated to use your font variable
     fontWeight: '700',
     color: '#002f78',
+    textAlign: 'center',
   },
+
+  // ---------- Contact Row ----------
   contactRow: {
-  flexDirection: "row",
-  alignItems: "center",
-  marginBottom: 10,
-  gap: 8,
-},
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+    gap: 8,
+  },
+
   // ---------- Contact Form ----------
-contactFormInput: {
-  borderWidth: 1,
-  borderColor: "#ddd",
-  borderRadius: 8,
-  padding: 12,
-  marginBottom: 15,
-  fontFamily: "Exo2-Regular",
-  fontSize: 14,
-  backgroundColor: "#fff",
-},
+  contactFormInput: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 15,
+    fontFamily: FONT_BODY,
+    fontSize: 14,
+    backgroundColor: "#fff",
+  },
 
-errorText: {
-  color: "#d32f2f",
-  fontFamily: "Exo2-Bold",
-  marginBottom: 12,
-},
+  errorText: {
+    color: "#d32f2f",
+    fontFamily: FONT_BUTTON,
+    marginBottom: 12,
+  },
 
-successText: {
-  color: "#2e7d32",
-  fontFamily: "Exo2-Bold",
-  marginBottom: 12,
-},
+  successText: {
+    color: "#2e7d32",
+    fontFamily: FONT_BUTTON,
+    marginBottom: 12,
+  },
 });
