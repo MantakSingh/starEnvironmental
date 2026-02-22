@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import Footer from './footer';
 import { styles } from './styles/styles';
@@ -31,7 +32,11 @@ const TASKBAR_HEIGHT = 70;
 
 export default function Layout() {
   const router = useRouter();
+  const { width } = useWindowDimensions();
+  const isMobile = width < 900;
+
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [fontsLoaded] = useFonts({
     'Exo2-Regular': require('../assets/fonts/Exo2-Regular.otf'),
@@ -73,8 +78,8 @@ export default function Layout() {
           </Text>
         </TouchableOpacity>
 
-        {/* Mini Dropdown */}
-        {dropdownKey && isActive && (
+        {/* Desktop Dropdown */}
+        {dropdownKey && isActive && !isMobile && (
           <View
             style={[
               styles.dropdownMenu,
@@ -120,6 +125,7 @@ export default function Layout() {
             right: 0,
             height: TASKBAR_HEIGHT,
             zIndex: 100,
+            justifyContent: isMobile ? 'space-between' : 'flex-start',
           },
         ]}
       >
@@ -141,15 +147,71 @@ export default function Layout() {
           />
         </View>
 
-        {/* Navigation */}
-        <View style={styles.pagesContainer}>
-          <TaskButton label="Home" route="/" />
-          <TaskButton label="Who We Are" dropdownKey="who" />
-          <TaskButton label="What We Do" route="/WhatWeDo" />
-          <TaskButton label="Projects" dropdownKey="projects" />
-          <TaskButton label="Contact" route="/contact" />
-        </View>
+        {/* Desktop Navigation (UNCHANGED) */}
+        {!isMobile && (
+          <View style={styles.pagesContainer}>
+            <TaskButton label="Home" route="/" />
+            <TaskButton label="Who We Are" dropdownKey="who" />
+            <TaskButton label="What We Do" route="/WhatWeDo" />
+            <TaskButton label="Projects" dropdownKey="projects" />
+            <TaskButton label="Contact" route="/contact" />
+          </View>
+        )}
+
+        {/* Mobile Hamburger */}
+        {isMobile && (
+          <TouchableOpacity
+            onPress={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{ paddingRight: 20 }}
+          >
+            <Text style={{ color: 'white', fontSize: 28 }}>☰</Text>
+          </TouchableOpacity>
+        )}
       </View>
+
+      {/* ---------------- Mobile Dropdown ---------------- */}
+      {isMobile && mobileMenuOpen && (
+        <View
+          style={[
+            styles.dropdownMenu,
+            {
+              position: 'absolute',
+              top: TASKBAR_HEIGHT,
+              left: 0,
+              right: 0,
+              zIndex: 150,
+            },
+          ]}
+        >
+          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/'); }}>
+            <Text style={styles.dropdownText}>Home</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/WhoWeAre/AboutUs'); }}>
+            <Text style={styles.dropdownText}>About Us</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/WhoWeAre/OurTeam'); }}>
+            <Text style={styles.dropdownText}>Our Team</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/WhatWeDo'); }}>
+            <Text style={styles.dropdownText}>What We Do</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/projects/currentProjects/lakewood'); }}>
+            <Text style={styles.dropdownText}>Current Projects</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/projects/pastProjects/pastProjects'); }}>
+            <Text style={styles.dropdownText}>Past Projects</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => { setMobileMenuOpen(false); router.push('/contact'); }}>
+            <Text style={styles.dropdownText}>Contact</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       {/* ---------------- Main Content ---------------- */}
       <View style={{ flex: 1, marginTop: TASKBAR_HEIGHT }}>
@@ -159,7 +221,10 @@ export default function Layout() {
             flexGrow: 1,
             justifyContent: 'space-between',
           }}
-          onScrollBeginDrag={() => setActiveDropdown(null)} // auto close on scroll
+          onScrollBeginDrag={() => {
+            setActiveDropdown(null);
+            setMobileMenuOpen(false);
+          }}
         >
           <Slot />
           <Footer />
