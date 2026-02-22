@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { Linking, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "./styles/styles";
+import { styles } from "../styles/styles";
 
 export default function Footer() {
   const openLink = (url: string) => {

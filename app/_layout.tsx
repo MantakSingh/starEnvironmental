@@ -11,7 +11,7 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import Footer from './footer';
+import Footer from './components/footer';
 import { styles } from './styles/styles';
 
 SplashScreen.preventAutoHideAsync();
