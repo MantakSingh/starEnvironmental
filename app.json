@@ -49,7 +49,9 @@
       "reactCompiler": true
     },
     "extra": {
-      "router": {},
+      "router": {
+        "basePath": "/starenvironmental"
+      },
       "eas": {
         "projectId": "7d2c3697-e3ee-463b-9427-9a8b65cd3e16"
       }
