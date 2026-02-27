@@ -8,9 +8,11 @@
     "scheme": "starenvironmental",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
@@ -22,12 +24,13 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.mantaksingh.starEnvironmental"
     },
+
     "web": {
       "output": "static",
-      "favicon": "./assets/images/Blue_Star_symbol.png",
-      "publicPath": "/starenvironmental/",
-      "bundler": "metro"
+      "baseUrl": "/starEnvironmental/",
+      "favicon": "./assets/images/Blue_Star_symbol.png"
     },
+
     "plugins": [
       "expo-router",
       [
@@ -44,18 +47,18 @@
       ],
       "expo-font"
     ],
+
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
     },
+
     "extra": {
-      "router": {
-        "basePath": "/starenvironmental"
-      },
       "eas": {
         "projectId": "7d2c3697-e3ee-463b-9427-9a8b65cd3e16"
       }
     },
+
     "owner": "mantaksingh"
   }
 }

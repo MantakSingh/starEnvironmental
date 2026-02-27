@@ -1,19 +1,22 @@
 {
   "name": "starenvironmental",
-  "homepage": "https://MantakSingh.github.io/starenvironmental",
+  "homepage": "https://mantaksingh.github.io/starEnvironmental",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "private": true,
+
   "scripts": {
     "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
 
-    "predeploy": "expo export --platform web",
-    "deploy": "gh-pages -d dist"
+    "build:web": "expo export --platform web",
+    "predeploy": "npm run build:web",
+    "deploy": "gh-pages -d dist -b gh-pages"
   },
+
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@expo/vector-icons": "^15.0.3",
@@ -43,11 +46,12 @@
     "react-native-web": "0.21.0",
     "react-native-worklets": "0.5.1"
   },
+
   "devDependencies": {
     "@types/react": "~19.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "gh-pages": "^6.3.0",
     "typescript": "~5.9.2"
-  },
-  "private": true
+  }
+}
